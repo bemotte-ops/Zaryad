@@ -11,10 +11,8 @@
             --light: #f8f9fa;
             --dark: #212529;
             --gray: #6c757d;
-            --bio-green: #4caf50; /* Ярко-зеленый */
-            --phys-blue: #2196f3; /* Ярко-голубой */
-            --chem-pink: #e91e63; /* Ярко-розовый */
-            --geo-yellow: #ff9800; /* Ярко-желтый */
+            --age-blue: #2196f3; /* Ярко-синий для 7+ и 9+ */
+            --age-pink: #e91e63; /* Ярко-розовый для 10+ и 12+ */
             --border-radius: 12px;
             --shadow: 0 4px 12px rgba(0,0,0,0.15);
             --transition: all 0.3s ease;
@@ -135,29 +133,32 @@
             color: var(--primary);
         }
         
-        .bio {
-            border-left: 4px solid var(--bio-green);
+        .age-blue {
+            border-left: 4px solid var(--age-blue);
         }
         
-        .phys {
-            border-left: 4px solid var(--phys-blue);
-        }
-        
-        .chem {
-            border-left: 4px solid var(--chem-pink);
-        }
-        
-        .geo {
-            border-left: 4px solid var(--geo-yellow);
+        .age-pink {
+            border-left: 4px solid var(--age-pink);
         }
         
         .age {
-            background: #e3f2fd;
-            color: #1976d2;
             padding: 3px 8px;
             border-radius: 20px;
             display: inline-block;
             font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .age-blue .age {
+            background: #e3f2fd;
+            color: #0d47a1;
+            border: 1px solid #bbdefb;
+        }
+        
+        .age-pink .age {
+            background: #fce4ec;
+            color: #880e4f;
+            border: 1px solid #f8bbd0;
         }
         
         .duration {
@@ -300,20 +301,12 @@
             z-index: 10;
         }
         
-        .bio-activity { 
-            background: linear-gradient(135deg, var(--bio-green), #388e3c); 
+        .age-blue-activity { 
+            background: linear-gradient(135deg, var(--age-blue), #0d47a1); 
         }
         
-        .phys-activity { 
-            background: linear-gradient(135deg, var(--phys-blue), #1565c0); 
-        }
-        
-        .chem-activity { 
-            background: linear-gradient(135deg, var(--chem-pink), #c2185b); 
-        }
-        
-        .geo-activity { 
-            background: linear-gradient(135deg, var(--geo-yellow), #f57c00); 
+        .age-pink-activity { 
+            background: linear-gradient(135deg, var(--age-pink), #880e4f); 
         }
         
         .activity-time {
@@ -339,7 +332,7 @@
         .legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 25px;
             margin-top: 25px;
             padding-top: 20px;
             border-top: 2px dashed #ccc;
@@ -349,14 +342,14 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.88rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
         
         .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
             border: 2px solid white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -429,77 +422,77 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bio">
+                        <tr class="age-blue">
                             <td class="activity-name">Кто в пруду?</td>
                             <td>Стереоскопические микроскопы для изучения водных экосистем. Наблюдение за строением и жизнью беспозвоночных. Сравнение обитателей луж, ручьев, рек, озер и морей.</td>
                             <td><span class="age">7+</span></td>
                             <td class="duration">45</td>
                             <td class="price">600</td>
                         </tr>
-                        <tr class="phys">
+                        <tr class="age-blue">
                             <td class="activity-name">Мастерская юного синоптика</td>
                             <td>Барометр, атмосферное давление и циклоны. Работа с метеостанцией и приборами для прогнозирования погоды. Создание барометра своими руками для наблюдений и предсказаний.</td>
                             <td><span class="age">7+</span></td>
                             <td class="duration">45</td>
                             <td class="price">600</td>
                         </tr>
-                        <tr class="phys">
+                        <tr class="age-blue">
                             <td class="activity-name">Феномен снегурочки</td>
                             <td>Агрегатные состояния вещества и кристаллы ацетата натрия. Наблюдение снежинок под микроскопом. Проведение экспериментов и создание искусственного снега.</td>
                             <td><span class="age">7+</span></td>
                             <td class="duration">45</td>
                             <td class="price">750</td>
                         </tr>
-                        <tr class="bio">
+                        <tr class="age-blue">
                             <td class="activity-name">Секреты теплокровных</td>
                             <td>Эксперименты по терморегуляции человеческого тела. Изучение работы внутренней обогревательной системы и термозащиты. Освоение навыков распознавания признаков переохлаждения и первой помощи.</td>
                             <td><span class="age">7+</span></td>
                             <td class="duration">45</td>
                             <td class="price">750</td>
                         </tr>
-                        <tr class="phys">
+                        <tr class="age-blue">
                             <td class="activity-name">Куда ведут свет?</td>
                             <td>Оптическое волокно, световоды и преломление света в жидкости. Демонстрации световых явлений с использованием лазеров и воды. Сборка декоративного световодного светильника для дома.</td>
                             <td><span class="age">9+</span></td>
                             <td class="duration">45</td>
                             <td class="price">750</td>
                         </tr>
-                        <tr class="phys">
+                        <tr class="age-blue">
                             <td class="activity-name">Природа цвета</td>
                             <td>Смешение цветов с помощью светодиодов и микроскопов. Изучение цветовых моделей RGB и CMYK, их применения в цифровых и печатных медиа. Практическое исследование яркости и оттенков в разных цветовых пространствах.</td>
                             <td><span class="age">9+</span></td>
                             <td class="duration">60</td>
                             <td class="price">600</td>
                         </tr>
-                        <tr class="geo">
+                        <tr class="age-blue">
                             <td class="activity-name">Мир минералов</td>
                             <td>Изучение кристаллических решеток и аморфных тел. Рассмотрение минералов (аметиста, пирита, серы) через стереоскопический микроскоп. Изучение свойств и применения сфалерита, флюорита, серы и кварца.</td>
                             <td><span class="age">9+</span></td>
                             <td class="duration">45</td>
                             <td class="price">600</td>
                         </tr>
-                        <tr class="chem">
+                        <tr class="age-pink">
                             <td class="activity-name">Фотография в синих тонах</td>
                             <td>Цианотипия - архаичный метод фотопечати XIX века. Приготовление фоточувствительной смеси для получения голубых отпечатков. Создание «отпечатка-фотографии» в старинной технике с голубыми тонами.</td>
                             <td><span class="age">10+</span></td>
                             <td class="duration">60</td>
                             <td class="price">900</td>
                         </tr>
-                        <tr class="chem">
+                        <tr class="age-pink">
                             <td class="activity-name">Икра</td>
                             <td>Молекулярная кулинария и химическая лаборатория. Способы добычи натуральной икры и создание искусственных заменителей. Получение икры с ароматами апельсина и жевательной резинки.</td>
                             <td><span class="age">12+</span></td>
                             <td class="duration">45</td>
                             <td class="price">800</td>
                         </tr>
-                        <tr class="chem">
+                        <tr class="age-pink">
                             <td class="activity-name">Формула НГ игрушки</td>
                             <td>Исследование люминесценции семи различных веществ под УФ-лампой. Наблюдение и сравнение свечения разных химических соединений. Создание оригинальной новогодней игрушки с научным химическим декором.</td>
                             <td><span class="age">12+</span></td>
                             <td class="duration">45</td>
                             <td class="price">750</td>
                         </tr>
-                        <tr class="chem">
+                        <tr class="age-pink">
                             <td class="activity-name">Тайна ароматов</td>
                             <td>Паровая экстракция, дистилляция и анфлераж. Принципы построения парфюмерной композиции. Выделим эфирное масло из цитрусовых, мяты и мелиссы, создадим собственную парфюмерную композицию.</td>
                             <td><span class="age">12+</span></td>
@@ -533,91 +526,91 @@
                     
                     <div class="schedule-grid">
                         <!-- Кто в пруду? 11:30-12:15 -->
-                        <div class="activity-slot bio-activity" style="top: calc(15px * 6); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 6); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Кто в пруду?
                             <div class="activity-time">11:30 - 12:15</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Мастерская юного синоптика 14:45-15:30 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 19); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 19); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Мастерская юного синоптика
                             <div class="activity-time">14:45 - 15:30</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Мастерская юного синоптика 16:15-17:00 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 25); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 25); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Мастерская юного синоптика
                             <div class="activity-time">16:15 - 17:00</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Феномен снегурочки 12:15-13:00 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 9); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 9); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Феномен снегурочки
                             <div class="activity-time">12:15 - 13:00</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Феномен снегурочки 13:45-14:30 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 15); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 15); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Феномен снегурочки
                             <div class="activity-time">13:45 - 14:30</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Секреты теплокровных 13:30-14:15 -->
-                        <div class="activity-slot bio-activity" style="top: calc(15px * 14); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 14); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Секреты теплокровных
                             <div class="activity-time">13:30 - 14:15</div>
                             <div class="activity-age">7+</div>
                         </div>
                         
                         <!-- Куда ведут свет? 13:00-13:45 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 12); left: calc(25% * 3); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 12); left: calc(25% * 3); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Куда ведут свет?
                             <div class="activity-time">13:00 - 13:45</div>
                             <div class="activity-age">9+</div>
                         </div>
                         
                         <!-- Природа цвета 15:45-16:45 -->
-                        <div class="activity-slot phys-activity" style="top: calc(15px * 23); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 23); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
                             Природа цвета
                             <div class="activity-time">15:45 - 16:45</div>
                             <div class="activity-age">9+</div>
                         </div>
                         
                         <!-- Мир минералов 17:45-18:30 -->
-                        <div class="activity-slot geo-activity" style="top: calc(15px * 31); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-blue-activity" style="top: calc(15px * 31); left: calc(25% * 0); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Мир минералов
                             <div class="activity-time">17:45 - 18:30</div>
                             <div class="activity-age">9+</div>
                         </div>
                         
                         <!-- Фотография в синих тонах 17:30-18:30 -->
-                        <div class="activity-slot chem-activity" style="top: calc(15px * 30); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
+                        <div class="activity-slot age-pink-activity" style="top: calc(15px * 30); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
                             Фотография в синих тонах
                             <div class="activity-time">17:30 - 18:30</div>
                             <div class="activity-age">10+</div>
                         </div>
                         
                         <!-- Икра 16:00-16:45 -->
-                        <div class="activity-slot chem-activity" style="top: calc(15px * 24); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-pink-activity" style="top: calc(15px * 24); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Икра
                             <div class="activity-time">16:00 - 16:45</div>
                             <div class="activity-age">12+</div>
                         </div>
                         
                         <!-- Формула НГ игрушки 12:00-12:45 -->
-                        <div class="activity-slot chem-activity" style="top: calc(15px * 8); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
+                        <div class="activity-slot age-pink-activity" style="top: calc(15px * 8); left: calc(25% * 1); width: calc(25% - 2px); height: calc(15px * 3 - 2px);">
                             Формула НГ игрушки
                             <div class="activity-time">12:00 - 12:45</div>
                             <div class="activity-age">12+</div>
                         </div>
                         
                         <!-- Тайна ароматов 17:45-18:45 -->
-                        <div class="activity-slot chem-activity" style="top: calc(15px * 31); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
+                        <div class="activity-slot age-pink-activity" style="top: calc(15px * 31); left: calc(25% * 2); width: calc(25% - 2px); height: calc(15px * 4 - 2px);">
                             Тайна ароматов
                             <div class="activity-time">17:45 - 18:45</div>
                             <div class="activity-age">12+</div>
@@ -627,20 +620,12 @@
                 
                 <div class="legend">
                     <div class="legend-item">
-                        <div class="legend-color" style="background: var(--bio-green);"></div>
-                        <span>Биология</span>
+                        <div class="legend-color" style="background: var(--age-blue);"></div>
+                        <span>Возраст 7-9 лет</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color" style="background: var(--phys-blue);"></div>
-                        <span>Физика</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--chem-pink);"></div>
-                        <span>Химия</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: var(--geo-yellow);"></div>
-                        <span>Геология</span>
+                        <div class="legend-color" style="background: var(--age-pink);"></div>
+                        <span>Возраст 10+ лет</span>
                     </div>
                 </div>
             </div>
