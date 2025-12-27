@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,137 +6,133 @@
     <title>Зарядье 30 декабря 2025</title>
     <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Segoe UI',Tahoma,Geneva;background:#f0f2f5;padding:20px;color:#202124}
-    .container{max-width:2000px;margin:0 auto}
-    .header{background:white;padding:30px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);text-align:center;margin-bottom:30px}
-    .header h1{color:#1a73e8;font-size:2em;margin-bottom:10px}
-    .header p{color:#5f6368;font-size:1em}
-    .layout{display:grid;grid-template-columns:280px 1fr;gap:20px}
-    .sidebar{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);height:fit-content;position:sticky;top:20px}
-    .sidebar h2{color:#1a73e8;margin-bottom:20px;font-size:1.05em;border-bottom:3px solid #1a73e8;padding-bottom:10px}
-    .prog{padding:12px;margin-bottom:10px;background:#f8f9fa;border-left:4px solid #1a73e8;border-radius:6px;cursor:pointer;transition:all 0.3s}
-    .prog:hover{background:#e8f0fe;transform:translateX(3px);box-shadow:0 2px 8px rgba(26,115,232,0.2)}
-    .prog strong{display:block;color:#1a73e8;margin-bottom:4px;font-size:0.93em;font-weight:600}
-    .prog small{color:#5f6368;font-size:0.82em;line-height:1.5}
-    .legend{margin-top:25px;padding-top:20px;border-top:2px solid #dadce0}
-    .legend h3{color:#1a73e8;font-size:0.88em;margin-bottom:12px;font-weight:600}
-    .leg{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:0.82em}
-    .legc{width:14px;height:14px;border-radius:2px;flex-shrink:0}
-    .c1{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}
-    .c2{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}
-    .c3{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%)}
-    .c4{background:linear-gradient(135deg,#30cfd0 0%,#330867 100%)}
-    .calendar{background:white;padding:25px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-    .cal-title{text-align:center;font-size:1.15em;font-weight:bold;color:#202124;margin-bottom:15px}
-    .cal-info{text-align:center;color:#5f6368;font-size:0.88em;margin-bottom:20px}
-    .scroller{overflow-x:auto;padding-bottom:10px}
-    .grid{display:grid;grid-template-columns:75px repeat(11,1fr);gap:1px;background:#dadce0;min-width:1400px}
-    .hdr{background:#1a73e8;color:white;padding:10px 3px;text-align:center;font-weight:bold;font-size:0.75em;display:flex;align-items:center;justify-content:center}
-    .row-hdr{background:#f8f9fa;color:#1a73e8;padding:8px 3px;font-weight:bold;font-size:0.75em;text-align:center;border-right:2px solid #1a73e8}
-    .slot{background:white;min-height:90px;position:relative;overflow:visible}
-    .event{position:absolute;left:1px;right:1px;padding:3px 2px;border-radius:3px;font-size:0.65em;font-weight:bold;color:white;cursor:pointer;overflow:hidden;border:1px solid;line-height:1.2;transition:all 0.2s;text-align:center}
-    .event:hover{transform:scale(1.1);z-index:100;box-shadow:0 3px 12px rgba(0,0,0,0.3);white-space:normal;overflow:visible}
-    .ev1{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);border-color:#f5576c}
-    .ev2{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);border-color:#00f2fe;color:#333}
-    .ev3{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%);border-color:#fee140;color:#333}
-    .ev4{background:linear-gradient(135deg,#30cfd0 0%,#330867 100%);border-color:#30cfd0}
-    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.4)}
-    .modal.show{display:block}
-    .modal-content{background:white;margin:3% auto;padding:30px;border-radius:10px;width:92%;max-width:500px;box-shadow:0 4px 20px rgba(0,0,0,0.3);max-height:85vh;overflow-y:auto}
-    .close{color:#5f6368;float:right;font-size:28px;font-weight:bold;cursor:pointer;transition:color 0.2s}
-    .close:hover{color:#202124}
-    .modal h2{color:#1a73e8;margin-bottom:20px;margin-top:10px;font-size:1.3em}
-    .minfo{margin:12px 0;padding:12px;background:#f8f9fa;border-left:3px solid #1a73e8;border-radius:4px}
-    .mlbl{color:#1a73e8;font-weight:600;font-size:0.88em;display:block;margin-bottom:5px}
-    .mval{color:#5f6368;font-size:0.9em}
-    .mdesc{margin:15px 0;padding:15px;background:#f8f9fa;border-radius:4px;color:#5f6368;line-height:1.6;font-size:0.9em}
-    @media(max-width:1300px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
+    body{font-family:'Segoe UI',Tahoma,Geneva,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);padding:20px;min-height:100vh}
+    .container{max-width:2100px;margin:0 auto}
+    .header{background:white;padding:30px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.2);text-align:center;margin-bottom:30px}
+    .header h1{color:#667eea;font-size:2.2em;margin-bottom:10px}
+    .header p{color:#666;font-size:1.05em}
+    .main{display:grid;grid-template-columns:300px 1fr;gap:25px}
+    .sidebar{background:white;padding:25px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.2);height:fit-content;position:sticky;top:20px}
+    .sidebar h2{color:#667eea;margin-bottom:20px;font-size:1.15em;border-bottom:3px solid #667eea;padding-bottom:12px;font-weight:700}
+    .prog{padding:13px;margin-bottom:11px;background:#f8f9fa;border-left:4px solid #667eea;border-radius:6px;cursor:pointer;transition:all 0.3s;border:1px solid #e8e8e8}
+    .prog:hover{background:#e8f0fe;transform:translateX(4px);box-shadow:0 3px 10px rgba(102,126,234,0.25);border-color:#667eea}
+    .prog strong{display:block;color:#667eea;margin-bottom:5px;font-size:0.96em;font-weight:700}
+    .prog small{color:#666;font-size:0.83em;line-height:1.5;display:block}
+    .legend{margin-top:30px;padding-top:20px;border-top:2px solid #e8e8e8}
+    .legend h3{color:#667eea;font-size:0.9em;margin-bottom:14px;font-weight:700;text-transform:uppercase}
+    .leg-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:0.85em}
+    .leg-color{width:16px;height:16px;border-radius:3px;flex-shrink:0}
+    .cal-section{background:white;padding:30px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+    .cal-title{text-align:center;font-size:1.25em;font-weight:700;color:#333;margin-bottom:8px}
+    .cal-info{text-align:center;color:#666;font-size:0.9em;margin-bottom:20px}
+    .scroller{overflow-x:auto;padding-bottom:15px}
+    .calendar{display:grid;grid-template-columns:70px repeat(11,1fr);gap:2px;background:#ccc;min-width:1500px;padding:10px;border-radius:8px}
+    .cell-header{background:#667eea;color:white;padding:12px 5px;text-align:center;font-weight:700;font-size:0.78em;display:flex;align-items:center;justify-content:center;border-radius:4px}
+    .time-label{background:#f0f0f0;color:#667eea;padding:12px 5px;text-align:center;font-weight:700;font-size:0.75em;border-right:2px solid #667eea;border-radius:4px}
+    .time-cell{background:white;min-height:100px;position:relative;padding:3px;border-radius:4px;overflow:visible}
+    .event-block{position:absolute;padding:4px 2px;border-radius:3px;font-size:0.68em;font-weight:700;color:white;cursor:pointer;border:1.5px solid;overflow:hidden;transition:all 0.2s;line-height:1.2;text-align:center;left:2px;right:2px}
+    .event-block:hover{transform:scale(1.12);z-index:100;box-shadow:0 4px 14px rgba(0,0,0,0.35);white-space:normal;overflow:visible;text-align:left}
+    .ev-edu{background:linear-gradient(135deg,#f093fb,#f5576c);border-color:#e63946}
+    .ev-exh{background:linear-gradient(135deg,#4facfe,#00f2fe);border-color:#0099cc;color:#222}
+    .ev-film{background:linear-gradient(135deg,#fa709a,#fee140);border-color:#ffc107;color:#222}
+    .ev-attr{background:linear-gradient(135deg,#30cfd0,#330867);border-color:#0d7377}
+    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5)}
+    .modal.show{display:flex;align-items:center;justify-content:center}
+    .modal-box{background:white;padding:35px;border-radius:12px;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+    .close{color:#999;float:right;font-size:32px;font-weight:700;cursor:pointer;transition:color 0.2s}
+    .close:hover{color:#333}
+    .modal h2{color:#667eea;margin-bottom:25px;margin-top:10px;font-size:1.4em;font-weight:700}
+    .info-row{margin:14px 0;padding:13px;background:#f8f9fa;border-left:3px solid #667eea;border-radius:5px}
+    .info-label{color:#667eea;font-weight:700;font-size:0.9em;display:block;margin-bottom:5px;text-transform:uppercase}
+    .info-value{color:#666;font-size:0.95em}
+    .desc-box{margin:18px 0;padding:16px;background:#f0f2f5;border-radius:6px;color:#555;line-height:1.7;font-size:0.93em}
+    @media(max-width:1400px){.main{grid-template-columns:1fr}.sidebar{position:static;max-width:100%}}
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎄 Парк Зарядье - 30 декабря 2025</h1>
-            <p>Интерактивное расписание мероприятий с визуализацией пересечений</p>
+            <h1>🎄 Парк "Зарядье" - 30 декабря 2025</h1>
+            <p>Интерактивное расписание мероприятий | Кликните на программу для деталей</p>
         </div>
         
-        <div class="layout">
+        <div class="main">
             <div class="sidebar">
-                <h2>📋 Все программы</h2>
-                <div class="prog" onclick="m('Феномен снегурочки','12:15-13:00, 13:45-14:30','Взглянем на Снегурочку с научной точки зрения. Изучаем свойства воды, снега и льда через эксперименты','7+','45','750')">
-                    <strong>Феномен снегурочки</strong>
+                <h2>📋 Программы</h2>
+                
+                <div class="prog" onclick="showModal('Феномен снегурочки','12:15-13:00, 13:45-14:30','Взглянем на Снегурочку с научной точки зрения. Изучаем свойства воды, снега и льда через интересные эксперименты. Дети узнают физику зимы!','7+','45','750')">
+                    <strong>🔬 Феномен снегурочки</strong>
                     <small>7+ • 45мин • 750₽</small>
                 </div>
-                <div class="prog" onclick="m('Мастерская юного синоптика','14:45-15:30','Как формируется погода? Изучаем атмосферные явления и учимся предсказывать погоду с барометром','7+','45','600')">
-                    <strong>Мастерская синоптика</strong>
+                
+                <div class="prog" onclick="showModal('Мастерская юного синоптика','14:45-15:30','Как формируется погода на планете? Изучаем атмосферные явления и учимся предсказывать погоду с барометром','7+','45','600')">
+                    <strong>⛅ Мастерская синоптика</strong>
                     <small>7+ • 45мин • 600₽</small>
                 </div>
-                <div class="prog" onclick="m('Куда ведут свет?','13:00-13:45','Физика света, отражение, преломление света. Оптические явления и эксперименты','7+','45','600')">
-                    <strong>Куда ведут свет?</strong>
+                
+                <div class="prog" onclick="showModal('Куда ведут свет?','13:00-13:45','Физика света: отражение, преломление, дифракция. Оптические явления и интересные эксперименты','7+','45','600')">
+                    <strong>💡 Куда ведут свет?</strong>
                     <small>7+ • 45мин • 600₽</small>
                 </div>
-                <div class="prog" onclick="m('Секреты теплокровных','13:30-14:15','Как животные сохраняют тепло зимой? Изучаем терморегуляцию живых организмов','7+','45','600')">
-                    <strong>Секреты теплокровных</strong>
+                
+                <div class="prog" onclick="showModal('Секреты теплокровных','13:30-14:15','Как животные сохраняют тепло зимой? Изучаем терморегуляцию и адаптации живых организмов','7+','45','600')">
+                    <strong>🔥 Секреты теплокровных</strong>
                     <small>7+ • 45мин • 600₽</small>
                 </div>
-                <div class="prog" onclick="m('Природа цвета','15:45-16:30','Каких цветов бывают химические соединения? Химические реакции и окраска веществ','9+','45','750')">
-                    <strong>Природа цвета</strong>
+                
+                <div class="prog" onclick="showModal('Природа цвета','15:45-16:30','Химия цветов и красителей. Каких цветов бывают химические реакции?','9+','45','750')">
+                    <strong>🎨 Природа цвета</strong>
                     <small>9+ • 45мин • 750₽</small>
                 </div>
-                <div class="prog" onclick="m('Икра. Сделай сам','16:00-16:45','Молекулярная кулинария: создаём икру с ароматами апельсина и жевательной резинки','12+','45','900')">
-                    <strong>Икра. Сделай сам</strong>
+                
+                <div class="prog" onclick="showModal('Икра. Сделай сам','16:00-16:45','Молекулярная кулинария: создаём икру с ароматами апельсина и жевательной резинки!','12+','45','900')">
+                    <strong>🍣 Икра. Сделай сам</strong>
                     <small>12+ • 45мин • 900₽</small>
                 </div>
-                <div class="prog" onclick="m('Мир минералов','17:45-18:30','Минераогия и кристаллография. Строение кристаллов, виды минералов и их свойства','9+','45','750')">
-                    <strong>Мир минералов</strong>
+                
+                <div class="prog" onclick="showModal('Мир минералов','17:45-18:30','Минераллогия и кристаллография. Строение кристаллов и их свойства','9+','45','750')">
+                    <strong>💎 Мир минералов</strong>
                     <small>9+ • 45мин • 750₽</small>
                 </div>
-                <div class="prog" onclick="m('Тайна ароматов','17:45-18:45','Как формируются ароматы? Создание собственных духов из эфирных масел','12+','60','900')">
-                    <strong>Тайна ароматов</strong>
+                
+                <div class="prog" onclick="showModal('Тайна ароматов','17:45-18:45','Как формируются ароматы? Создание собственных духов из эфирных масел','12+','60','900')">
+                    <strong>🌸 Тайна ароматов</strong>
                     <small>12+ • 60мин • 900₽</small>
                 </div>
-                <div class="prog" onclick="m('Формула новогодней игрушки','12:00-12:45','Люминесценция и УФ-свет: создаём яркие светящиеся игрушки с помощью люминофоров','12+','45','750')">
-                    <strong>Формула игрушки</strong>
+                
+                <div class="prog" onclick="showModal('Формула новогодней игрушки','12:00-12:45','Люминесценция: создаём светящиеся игрушки с УФ-светом и люминофорами','12+','45','750')">
+                    <strong>✨ Формула игрушки</strong>
                     <small>12+ • 45мин • 750₽</small>
                 </div>
-                <div class="prog" onclick="m('Флорариум. Как всё устроено','14:00-14:45','Аэропоника и выращивание растений. Как растения растут без почвы','7+','45','600')">
-                    <strong>Флорариум</strong>
+                
+                <div class="prog" onclick="showModal('Флорариум','14:00-14:45','Аэропоника: выращивание растений без почвы. Биотехнология!','7+','45','600')">
+                    <strong>🌱 Флорариум</strong>
                     <small>7+ • 45мин • 600₽</small>
                 </div>
-                <div class="prog" onclick="m('Фотография в синих тонах','17:30-18:30','Цианотипия - исторический метод фотографической печати. Создаём отпечатки','10+','60','750')">
-                    <strong>Фото в синих тонах</strong>
+                
+                <div class="prog" onclick="showModal('Фотография в синих тонах','17:30-18:30','Цианотипия - исторический метод печати. Создаём отпечатки сами','10+','60','750')">
+                    <strong>📷 Фото в синих тонах</strong>
                     <small>10+ • 60мин • 750₽</small>
                 </div>
                 
                 <div class="legend">
-                    <h3>🎨 КАТЕГОРИИ</h3>
-                    <div class="leg"><div class="legc c1"></div> Образование</div>
-                    <div class="leg"><div class="legc c2"></div> Выставки</div>
-                    <div class="leg"><div class="legc c3"></div> Фильмы</div>
-                    <div class="leg"><div class="legc c4"></div> Аттракции</div>
+                    <h3>🎨 Категории</h3>
+                    <div class="leg-item"><div class="leg-color" style="background:linear-gradient(135deg,#f093fb,#f5576c)"></div> Образование</div>
+                    <div class="leg-item"><div class="leg-color" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"></div> Выставки</div>
+                    <div class="leg-item"><div class="leg-color" style="background:linear-gradient(135deg,#fa709a,#fee140)"></div> Фильмы</div>
+                    <div class="leg-item"><div class="leg-color" style="background:linear-gradient(135deg,#30cfd0,#330867)"></div> Аттракции</div>
                 </div>
             </div>
             
-            <div class="calendar">
-                <div class="cal-title">📅 КАЛЕНДАРЬ-СЕТКА (Google Calendar стиль)</div>
-                <div class="cal-info">Клик по блоку = деталь • Цвет = категория • Ширина = длительность • Пересечения видны</div>
+            <div class="cal-section">
+                <div class="cal-title">📅 ИНТЕРАКТИВНЫЙ КАЛЕНДАРЬ-СЕТКА (Google Calendar стиль)</div>
+                <div class="cal-info">⏰ Часовые слоты 10:00-20:00 | 🎨 Цвет = тип мероприятия | 📏 Размер блока = длительность | 👆 Клик = подробности</div>
                 
                 <div class="scroller">
-                    <div class="grid">
-                        <div class="hdr"></div>
-                        <div class="hdr">10:00</div>
-                        <div class="hdr">11:00</div>
-                        <div class="hdr">12:00</div>
-                        <div class="hdr">13:00</div>
-                        <div class="hdr">14:00</div>
-                        <div class="hdr">15:00</div>
-                        <div class="hdr">16:00</div>
-                        <div class="hdr">17:00</div>
-                        <div class="hdr">18:00</div>
-                        <div class="hdr">19:00</div>
-                        <div class="hdr">20:00</div>
-                        
-                        <!-- 10:00 -->
-                        <div class="row-hdr">10:00</div>
-                        <div class="slot"><div class="event ev2" style="top:5%;height:90%">Выставка 1</div></div>
-                        <div class="slot"><div class="event ev2" style="top:5%;height:90%">
+                    <div class="calendar">
+                        <!-- Часовые ячейки заголовок -->
+                        <div class="cell-header"></div>
+                        <div class="cell-header">10:00-11:00</div>
+                        <div class="cell-header">11:00-12:00</div>
+                        <div class="cell-header">12:00-13:00</div>
+                        <div class="cell-header">13
