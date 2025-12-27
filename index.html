@@ -183,52 +183,53 @@
             display: flex;
             height: 100%;
             position: relative;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                transparent 12.5%, 
-                #f0f0f0 12.5%, 
-                #f0f0f0 25%, 
-                transparent 25%, 
-                transparent 37.5%, 
-                #f0f0f0 37.5%, 
-                #f0f0f0 50%, 
-                transparent 50%, 
-                transparent 62.5%, 
-                #f0f0f0 62.5%, 
-                #f0f0f0 75%, 
-                transparent 75%, 
-                transparent 87.5%, 
-                #f0f0f0 87.5%, 
-                #f0f0f0 100%);
         }
+        
+        /* Фоновая сетка с часами */
+        .timeline-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    to right,
+                    transparent,
+                    transparent calc(12.5% - 1px),
+                    #e0e0e0 calc(12.5% - 1px),
+                    #e0e0e0 12.5%
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Подписи часов - исправлено */
+        .hour-marker {
+            position: absolute;
+            top: 100%;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            padding-top: 5px;
+            transform: translateX(-50%);
+            z-index: 2;
+            white-space: nowrap;
+        }
+        
+        .hour-12 { left: 12.5%; }
+        .hour-13 { left: 25%; }
+        .hour-14 { left: 37.5%; }
+        .hour-15 { left: 50%; }
+        .hour-16 { left: 62.5%; }
+        .hour-17 { left: 75%; }
+        .hour-18 { left: 87.5%; }
         
         .time-marker {
             flex: 1;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
         }
-        
-        .time-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            position: absolute;
-            bottom: -25px;
-            white-space: nowrap;
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .time-label.hour-12 { left: 12.5%; transform: translateX(-50%); }
-        .time-label.hour-13 { left: 37.5%; transform: translateX(-50%); }
-        .time-label.hour-14 { left: 62.5%; transform: translateX(-50%); }
-        .time-label.hour-15 { left: 87.5%; transform: translateX(-50%); }
         
         .activity-slot {
             position: absolute;
@@ -335,7 +336,7 @@
             background: linear-gradient(135deg, var(--primary), #2e7d32);
         }
         
-        /* Мобильная версия - вертикальная временная шкала */
+        /* Мобильная версия - улучшенная */
         .mobile-timeline {
             display: none;
             background: white;
@@ -346,184 +347,83 @@
             border: 1px solid #e0e0e0;
         }
         
-        .mobile-time-column {
-            position: relative;
-            padding: 0 0 20px 60px;
-            min-height: 800px;
-        }
-        
-        .mobile-time-marker {
-            position: absolute;
-            left: 0;
-            width: 50px;
-            text-align: right;
-            padding-right: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary);
-            border-top: 1px solid #e0e0e0;
-        }
-        
-        .mobile-time-marker.hour-11 { top: 0; }
-        .mobile-time-marker.hour-12 { top: 12.5%; }
-        .mobile-time-marker.hour-13 { top: 25%; }
-        .mobile-time-marker.hour-14 { top: 37.5%; }
-        .mobile-time-marker.hour-15 { top: 50%; }
-        .mobile-time-marker.hour-16 { top: 62.5%; }
-        .mobile-time-marker.hour-17 { top: 75%; }
-        .mobile-time-marker.hour-18 { top: 87.5%; }
-        .mobile-time-marker.hour-19 { top: 100%; }
-        
-        .mobile-activity-slot {
-            position: absolute;
-            left: 60px;
-            right: 0;
-            border-radius: 8px;
-            padding: 10px 12px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.85rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            transition: var(--transition);
-            cursor: pointer;
-            z-index: 2;
-            border: 2px solid rgba(255,255,255,0.3);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        .mobile-activity-slot:hover {
-            transform: translateX(-3px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
-            z-index: 10;
-        }
-        
-        .mobile-activity-content {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        
-        .mobile-activity-title {
-            font-size: 0.9rem;
-            font-weight: 700;
+        .mobile-timeline-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .mobile-time-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .mobile-time-group {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .mobile-group-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .mobile-group-content {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .mobile-activity-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border-left: 4px solid var(--age-blue);
+            gap: 10px;
+        }
+        
+        .mobile-activity-item.age-pink {
+            border-left-color: var(--age-pink);
+        }
+        
+        .mobile-activity-time {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+            min-width: 80px;
+            white-space: nowrap;
+        }
+        
+        .mobile-activity-info {
+            flex: 1;
+        }
+        
+        .mobile-activity-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
         }
         
         .mobile-activity-details {
             display: flex;
-            align-items: center;
             gap: 10px;
-            font-size: 0.75rem;
-            opacity: 0.95;
-        }
-        
-        .mobile-activity-time {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .mobile-activity-time::before {
-            content: '🕒';
-            font-size: 0.7rem;
-        }
-        
-        /* Мобильная версия - список карточек */
-        .mobile-cards-view {
-            display: none;
-        }
-        
-        .mobile-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-bottom: 12px;
-            border: 1px solid #e0e0e0;
-            transition: var(--transition);
-        }
-        
-        .mobile-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-        }
-        
-        .mobile-card-header {
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .mobile-card-title {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1rem;
-            flex: 1;
-        }
-        
-        .mobile-card-time {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-left: 10px;
-            white-space: nowrap;
-        }
-        
-        .mobile-card-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .mobile-card-content.active {
-            padding: 15px;
-            max-height: 400px;
-        }
-        
-        .mobile-card-description {
-            font-size: 0.9rem;
-            color: var(--dark);
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
-        .mobile-card-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 6px;
-        }
-        
-        .mobile-detail-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-        }
-        
-        .mobile-detail-label {
-            font-weight: 600;
+            font-size: 0.8rem;
             color: var(--gray);
         }
         
-        .mobile-detail-value {
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
+        /* Переключатель мобильной версии */
         .mobile-view-toggle {
             display: none;
             margin-bottom: 15px;
@@ -656,38 +556,18 @@
         }
         
         @media (max-width: 576px) {
-            .mobile-time-column {
-                padding-left: 50px;
-            }
-            
-            .mobile-time-marker {
-                width: 40px;
-                font-size: 0.8rem;
-            }
-            
-            .mobile-activity-slot {
-                left: 50px;
-                padding: 8px 10px;
-                font-size: 0.8rem;
-            }
-            
-            .mobile-card-header {
-                padding: 12px;
-            }
-            
-            .mobile-card-title {
-                font-size: 0.95rem;
-            }
-            
-            .mobile-card-time {
-                font-size: 0.85rem;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .mobile-card-details {
+            .mobile-activity-item {
                 flex-direction: column;
                 gap: 8px;
+            }
+            
+            .mobile-activity-time {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .mobile-activity-details {
+                flex-wrap: wrap;
             }
             
             .view-toggle-buttons {
@@ -736,15 +616,18 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <!-- Метки часов -->
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <!-- Подписи часов - исправлено -->
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- Занятие 11:30-12:15 (45 мин) -->
+                            <!-- Занятие 11:30-12:15 (45 мин) - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 12.5%; width: 18.75%; top: 5px;"
+                                 style="left: 12.5%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(1)">
                                 <div class="slot-content">
                                     <div class="slot-time">11:30-12:15</div>
@@ -780,14 +663,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 14:45-15:30 -->
+                            <!-- 14:45-15:30 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 48.125%; width: 18.75%; top: 5px;"
+                                 style="left: 48.75%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(2)">
                                 <div class="slot-content">
                                     <div class="slot-time">14:45-15:30</div>
@@ -798,9 +684,9 @@
                                 </div>
                             </div>
                             
-                            <!-- 16:15-17:00 -->
+                            <!-- 16:15-17:00 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 65%; width: 18.75%; top: 5px;"
+                                 style="left: 65.625%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(2)">
                                 <div class="slot-content">
                                     <div class="slot-time">16:15-17:00</div>
@@ -836,14 +722,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 12:15-13:00 -->
+                            <!-- 12:15-13:00 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 18.75%; width: 18.75%; top: 5px;"
+                                 style="left: 18.75%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(3)">
                                 <div class="slot-content">
                                     <div class="slot-time">12:15-13:00</div>
@@ -854,9 +743,9 @@
                                 </div>
                             </div>
                             
-                            <!-- 13:45-14:30 -->
+                            <!-- 13:45-14:30 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 35.625%; width: 18.75%; top: 5px;"
+                                 style="left: 40.625%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(3)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:45-14:30</div>
@@ -892,14 +781,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 13:30-14:15 -->
+                            <!-- 13:30-14:15 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 31.25%; width: 18.75%; top: 5px;"
+                                 style="left: 31.25%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(4)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:30-14:15</div>
@@ -935,14 +827,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 13:00-13:45 -->
+                            <!-- 13:00-13:45 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 25%; width: 18.75%; top: 5px;"
+                                 style="left: 25%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(5)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:00-13:45</div>
@@ -978,14 +873,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 15:45-16:45 (60 мин) -->
+                            <!-- 15:45-16:45 (60 мин) - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 60%; width: 25%; top: 5px;"
+                                 style="left: 59.375%; width: 12.5%; top: 5px;"
                                  onclick="highlightActivity(6)">
                                 <div class="slot-content">
                                     <div class="slot-time">15:45-16:45</div>
@@ -1021,14 +919,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:45-18:30 -->
+                            <!-- 17:45-18:30 - исправленное позиционирование -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 85%; width: 18.75%; top: 5px;"
+                                 style="left: 84.375%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(7)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:45-18:30</div>
@@ -1064,14 +965,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:30-18:30 (60 мин) -->
+                            <!-- 17:30-18:30 (60 мин) - исправленное позиционирование -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 81.25%; width: 25%; top: 5px;"
+                                 style="left: 81.25%; width: 12.5%; top: 5px;"
                                  onclick="highlightActivity(8)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:30-18:30</div>
@@ -1107,14 +1011,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 16:00-16:45 -->
+                            <!-- 16:00-16:45 - исправленное позиционирование -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 62.5%; width: 18.75%; top: 5px;"
+                                 style="left: 62.5%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(9)">
                                 <div class="slot-content">
                                     <div class="slot-time">16:00-16:45</div>
@@ -1150,14 +1057,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 12:00-12:45 -->
+                            <!-- 12:00-12:45 - исправленное позиционирование -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 12.5%; width: 18.75%; top: 5px;"
+                                 style="left: 12.5%; width: 9.375%; top: 5px;"
                                  onclick="highlightActivity(10)">
                                 <div class="slot-content">
                                     <div class="slot-time">12:00-12:45</div>
@@ -1193,14 +1103,17 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:45-18:45 (60 мин) -->
+                            <!-- 17:45-18:45 (60 мин) - исправленное позиционирование -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 85%; width: 25%; top: 5px;"
+                                 style="left: 84.375%; width: 12.5%; top: 5px;"
                                  onclick="highlightActivity(11)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:45-18:45</div>
@@ -1236,10 +1149,13 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <div class="time-label hour-12">12:00</div>
-                            <div class="time-label hour-13">13:00</div>
-                            <div class="time-label hour-14">14:00</div>
-                            <div class="time-label hour-15">15:00</div>
+                            <div class="hour-marker hour-12">12:00</div>
+                            <div class="hour-marker hour-13">13:00</div>
+                            <div class="hour-marker hour-14">14:00</div>
+                            <div class="hour-marker hour-15">15:00</div>
+                            <div class="hour-marker hour-16">16:00</div>
+                            <div class="hour-marker hour-17">17:00</div>
+                            <div class="hour-marker hour-18">18:00</div>
                             
                             <!-- Весь день -->
                             <div class="full-day-slot" onclick="highlightActivity(12)">
@@ -1257,27 +1173,19 @@
             </div>
         </div>
         
-        <!-- Мобильная версия - вертикальная временная шкала -->
+        <!-- Мобильная версия -->
         <div class="mobile-view">
             <div class="mobile-timeline" id="mobile-timeline-view">
-                <div class="mobile-time-column" id="mobile-timeline-container">
-                    <!-- Метки времени -->
-                    <div class="mobile-time-marker hour-11">11:00</div>
-                    <div class="mobile-time-marker hour-12">12:00</div>
-                    <div class="mobile-time-marker hour-13">13:00</div>
-                    <div class="mobile-time-marker hour-14">14:00</div>
-                    <div class="mobile-time-marker hour-15">15:00</div>
-                    <div class="mobile-time-marker hour-16">16:00</div>
-                    <div class="mobile-time-marker hour-17">17:00</div>
-                    <div class="mobile-time-marker hour-18">18:00</div>
-                    <div class="mobile-time-marker hour-19">19:00</div>
-                    
-                    <!-- Занятия будут добавлены через JavaScript -->
+                <div class="mobile-timeline-header">
+                    <h3>Расписание мероприятий</h3>
+                </div>
+                <div class="mobile-time-slots" id="mobile-timeline-container">
+                    <!-- Временные группы будут добавлены через JavaScript -->
                 </div>
             </div>
             
             <!-- Мобильная версия - список карточек -->
-            <div class="mobile-cards-view" id="mobile-cards-view">
+            <div class="mobile-cards-view" id="mobile-cards-view" style="display: none;">
                 <!-- Карточки будут добавлены через JavaScript -->
             </div>
         </div>
@@ -1314,8 +1222,7 @@
                 age: "7+",
                 ageClass: "age-blue",
                 price: "600 ₽",
-                times: ["11:30-12:15"],
-                color: "#2196f3"
+                times: ["11:30-12:15"]
             },
             {
                 id: 2,
@@ -1324,8 +1231,7 @@
                 age: "7+",
                 ageClass: "age-blue",
                 price: "600 ₽",
-                times: ["14:45-15:30", "16:15-17:00"],
-                color: "#2196f3"
+                times: ["14:45-15:30", "16:15-17:00"]
             },
             {
                 id: 3,
@@ -1334,8 +1240,7 @@
                 age: "7+",
                 ageClass: "age-blue",
                 price: "750 ₽",
-                times: ["12:15-13:00", "13:45-14:30"],
-                color: "#2196f3"
+                times: ["12:15-13:00", "13:45-14:30"]
             },
             {
                 id: 4,
@@ -1344,8 +1249,7 @@
                 age: "7+",
                 ageClass: "age-blue",
                 price: "750 ₽",
-                times: ["13:30-14:15"],
-                color: "#2196f3"
+                times: ["13:30-14:15"]
             },
             {
                 id: 5,
@@ -1354,8 +1258,7 @@
                 age: "9+",
                 ageClass: "age-blue",
                 price: "750 ₽",
-                times: ["13:00-13:45"],
-                color: "#2196f3"
+                times: ["13:00-13:45"]
             },
             {
                 id: 6,
@@ -1364,8 +1267,7 @@
                 age: "9+",
                 ageClass: "age-blue",
                 price: "600 ₽",
-                times: ["15:45-16:45"],
-                color: "#2196f3"
+                times: ["15:45-16:45"]
             },
             {
                 id: 7,
@@ -1374,8 +1276,7 @@
                 age: "9+",
                 ageClass: "age-blue",
                 price: "600 ₽",
-                times: ["17:45-18:30"],
-                color: "#2196f3"
+                times: ["17:45-18:30"]
             },
             {
                 id: 8,
@@ -1384,8 +1285,7 @@
                 age: "10+",
                 ageClass: "age-pink",
                 price: "900 ₽",
-                times: ["17:30-18:30"],
-                color: "#e91e63"
+                times: ["17:30-18:30"]
             },
             {
                 id: 9,
@@ -1394,8 +1294,7 @@
                 age: "12+",
                 ageClass: "age-pink",
                 price: "800 ₽",
-                times: ["16:00-16:45"],
-                color: "#e91e63"
+                times: ["16:00-16:45"]
             },
             {
                 id: 10,
@@ -1404,8 +1303,7 @@
                 age: "12+",
                 ageClass: "age-pink",
                 price: "750 ₽",
-                times: ["12:00-12:45"],
-                color: "#e91e63"
+                times: ["12:00-12:45"]
             },
             {
                 id: 11,
@@ -1414,8 +1312,7 @@
                 age: "12+",
                 ageClass: "age-pink",
                 price: "900 ₽",
-                times: ["17:45-18:45"],
-                color: "#e91e63"
+                times: ["17:45-18:45"]
             },
             {
                 id: 12,
@@ -1424,8 +1321,7 @@
                 age: "7+",
                 ageClass: "age-blue",
                 price: "500/250 ₽",
-                times: ["Весь день (10:00-21:00)"],
-                color: "#1a5d38"
+                times: ["Весь день (10:00-21:00)"]
             }
         ];
 
@@ -1489,78 +1385,98 @@
             }
         }
 
-        // Функция для создания мобильной временной шкалы
+        // Создание мобильной временной шкалы (группировка по часам)
         function createMobileTimeline() {
             const container = document.getElementById('mobile-timeline-container');
-            
-            // Очищаем существующие занятия (оставляем только метки времени)
-            const existingMarkers = container.querySelectorAll('.mobile-time-marker');
             container.innerHTML = '';
-            existingMarkers.forEach(marker => {
-                container.appendChild(marker);
-            });
             
-            // Добавляем занятия
+            // Группируем мероприятия по часам начала
+            const timeGroups = {};
+            
             activities.forEach(activity => {
                 activity.times.forEach(timeSlot => {
-                    const slot = document.createElement('div');
-                    slot.className = 'mobile-activity-slot';
-                    
-                    // Определяем цвет
-                    const backgroundColor = activity.ageClass === 'age-blue' ? 'var(--age-blue)' : 
-                                          activity.ageClass === 'age-pink' ? 'var(--age-pink)' : 
-                                          'var(--primary)';
-                    
-                    slot.style.background = `linear-gradient(135deg, ${backgroundColor}, ${activity.color})`;
-                    
-                    // Позиционируем по времени
-                    let top = 0;
-                    let height = 0;
+                    let hourGroup = "Другие";
                     
                     if (timeSlot.includes('Весь день')) {
-                        top = 0;
-                        height = 100;
+                        hourGroup = "Весь день";
                     } else {
-                        const [start, end] = timeSlot.split('-');
-                        const [startHour, startMinute] = start.split(':').map(Number);
-                        const [endHour, endMinute] = end.split(':').map(Number);
+                        const [startTime] = timeSlot.split('-');
+                        const hour = parseInt(startTime.split(':')[0]);
                         
-                        // Вычисляем позицию в процентах (11:00 = 0%, 19:00 = 100%)
-                        const startPercent = ((startHour - 11) * 60 + startMinute) / (8 * 60) * 100;
-                        const endPercent = ((endHour - 11) * 60 + endMinute) / (8 * 60) * 100;
-                        
-                        top = startPercent;
-                        height = endPercent - startPercent;
+                        if (hour >= 11 && hour <= 18) {
+                            hourGroup = `${hour}:00-${hour+1}:00`;
+                        }
                     }
                     
-                    slot.style.top = `${top}%`;
-                    slot.style.height = `${height}%`;
+                    if (!timeGroups[hourGroup]) {
+                        timeGroups[hourGroup] = [];
+                    }
                     
-                    // Содержимое слота
-                    slot.innerHTML = `
-                        <div class="mobile-activity-content">
-                            <div class="mobile-activity-title">
-                                <span>${activity.name}</span>
-                            </div>
-                            <div class="mobile-activity-details">
-                                <div class="mobile-activity-time">${timeSlot}</div>
-                                <span>${activity.age}</span>
-                                <span>${activity.price}</span>
-                            </div>
-                        </div>
-                    `;
+                    timeGroups[hourGroup].push({
+                        ...activity,
+                        timeSlot: timeSlot
+                    });
+                });
+            });
+            
+            // Определяем порядок групп
+            const groupOrder = [
+                "Весь день",
+                "11:00-12:00", "12:00-13:00", "13:00-14:00", 
+                "14:00-15:00", "15:00-16:00", "16:00-17:00", 
+                "17:00-18:00", "18:00-19:00", "Другие"
+            ];
+            
+            // Создаем группы
+            groupOrder.forEach(groupName => {
+                if (timeGroups[groupName] && timeGroups[groupName].length > 0) {
+                    const groupDiv = document.createElement('div');
+                    groupDiv.className = 'mobile-time-group';
                     
-                    // Добавляем обработчик клика
-                    slot.addEventListener('click', () => {
-                        highlightMobileActivity(activity.id);
+                    const header = document.createElement('div');
+                    header.className = 'mobile-group-header';
+                    header.textContent = groupName;
+                    
+                    const content = document.createElement('div');
+                    content.className = 'mobile-group-content';
+                    
+                    // Сортируем мероприятия по времени начала
+                    timeGroups[groupName].sort((a, b) => {
+                        const getTime = (slot) => {
+                            if (slot.includes('Весь день')) return '00:00';
+                            return slot.split('-')[0];
+                        };
+                        return getTime(a.timeSlot).localeCompare(getTime(b.timeSlot));
                     });
                     
-                    container.appendChild(slot);
-                });
+                    // Добавляем мероприятия в группу
+                    timeGroups[groupName].forEach(activity => {
+                        const activityDiv = document.createElement('div');
+                        activityDiv.className = `mobile-activity-item ${activity.ageClass}`;
+                        activityDiv.onclick = () => highlightMobileActivity(activity.id);
+                        
+                        activityDiv.innerHTML = `
+                            <div class="mobile-activity-time">${activity.timeSlot}</div>
+                            <div class="mobile-activity-info">
+                                <div class="mobile-activity-name">${activity.name}</div>
+                                <div class="mobile-activity-details">
+                                    <span>${activity.age}</span>
+                                    <span>${activity.price}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        content.appendChild(activityDiv);
+                    });
+                    
+                    groupDiv.appendChild(header);
+                    groupDiv.appendChild(content);
+                    container.appendChild(groupDiv);
+                }
             });
         }
 
-        // Функция для создания мобильных карточек
+        // Создание мобильных карточек
         function createMobileCards() {
             const container = document.getElementById('mobile-cards-view');
             container.innerHTML = '';
@@ -1582,101 +1498,26 @@
             // Создаем карточки
             sortedActivities.forEach(activity => {
                 const card = document.createElement('div');
-                card.className = 'mobile-card';
-                card.id = `mobile-card-${activity.id}`;
+                card.className = 'mobile-activity-item';
+                card.classList.add(activity.ageClass);
+                card.onclick = () => toggleMobileCard(activity.id);
                 
                 // Собираем все временные слоты в одну строку
                 const timesStr = activity.times.join(', ');
                 
                 card.innerHTML = `
-                    <div class="mobile-card-header" onclick="toggleMobileCard(${activity.id})">
-                        <div class="mobile-card-title">${activity.name}</div>
-                        <div class="mobile-card-time">${activity.times[0]}</div>
-                    </div>
-                    <div class="mobile-card-content" id="mobile-card-content-${activity.id}">
-                        <div class="mobile-card-description">${activity.description}</div>
-                        <div class="mobile-card-details">
-                            <div class="mobile-detail-item">
-                                <span class="mobile-detail-label">Время:</span>
-                                <span class="mobile-detail-value">${timesStr}</span>
-                            </div>
-                            <div class="mobile-detail-item">
-                                <span class="mobile-detail-label">Возраст:</span>
-                                <span class="mobile-detail-value">${activity.age}</span>
-                            </div>
-                            <div class="mobile-detail-item">
-                                <span class="mobile-detail-label">Стоимость:</span>
-                                <span class="mobile-detail-value">${activity.price}</span>
-                            </div>
+                    <div class="mobile-activity-time">${activity.times[0]}</div>
+                    <div class="mobile-activity-info">
+                        <div class="mobile-activity-name">${activity.name}</div>
+                        <div class="mobile-activity-details">
+                            <span>${activity.age}</span>
+                            <span>${activity.price}</span>
                         </div>
                     </div>
                 `;
                 
                 container.appendChild(card);
             });
-        }
-
-        // Функция для переключения мобильной карточки
-        function toggleMobileCard(cardId) {
-            const content = document.getElementById(`mobile-card-content-${cardId}`);
-            const isActive = content.classList.contains('active');
-            
-            // Закрываем все открытые карточки
-            document.querySelectorAll('.mobile-card-content.active').forEach(el => {
-                if (el.id !== `mobile-card-content-${cardId}`) {
-                    el.classList.remove('active');
-                }
-            });
-            
-            // Переключаем текущую карточку
-            if (isActive) {
-                content.classList.remove('active');
-            } else {
-                content.classList.add('active');
-                
-                // Прокручиваем к карточке
-                document.getElementById(`mobile-card-${cardId}`).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest'
-                });
-            }
-        }
-
-        // Функция для подсветки активности на мобильной версии
-        function highlightMobileActivity(activityId) {
-            // Находим соответствующий слот на временной шкале
-            const slots = document.querySelectorAll('.mobile-activity-slot');
-            slots.forEach(slot => {
-                slot.style.boxShadow = '';
-                slot.style.borderColor = 'rgba(255,255,255,0.3)';
-            });
-            
-            // Подсвечиваем все слоты этого мероприятия
-            activities.find(a => a.id === activityId).times.forEach((timeSlot, index) => {
-                // Находим слот по времени
-                const allSlots = document.querySelectorAll('.mobile-activity-slot');
-                allSlots.forEach(slot => {
-                    const timeElement = slot.querySelector('.mobile-activity-time');
-                    if (timeElement && timeElement.textContent.includes(timeSlot)) {
-                        slot.style.boxShadow = '0 5px 15px rgba(212, 175, 55, 0.6)';
-                        slot.style.borderColor = 'var(--secondary)';
-                    }
-                });
-            });
-            
-            // Прокручиваем к временной шкале
-            document.getElementById('mobile-timeline-view').scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-            
-            // Снимаем подсветку через 3 секунды
-            setTimeout(() => {
-                slots.forEach(slot => {
-                    slot.style.boxShadow = '';
-                    slot.style.borderColor = 'rgba(255,255,255,0.3)';
-                });
-            }, 3000);
         }
 
         // Функция для переключения вида на мобильной версии
@@ -1697,6 +1538,37 @@
                 timelineView.style.display = 'none';
                 cardsView.style.display = 'block';
             }
+        }
+
+        // Функция для подсветки активности на мобильной версии
+        function highlightMobileActivity(activityId) {
+            // Находим все элементы с этим мероприятием
+            const activityItems = document.querySelectorAll('.mobile-activity-item');
+            
+            // Убираем подсветку со всех
+            activityItems.forEach(item => {
+                item.style.boxShadow = '';
+                item.style.borderColor = '#e0e0e0';
+            });
+            
+            // Подсвечиваем выбранное
+            const targetItems = Array.from(activityItems).filter(item => {
+                const nameElement = item.querySelector('.mobile-activity-name');
+                return nameElement && nameElement.textContent === activities.find(a => a.id === activityId).name;
+            });
+            
+            targetItems.forEach(item => {
+                item.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+                item.style.borderColor = 'var(--secondary)';
+            });
+            
+            // Снимаем подсветку через 3 секунды
+            setTimeout(() => {
+                targetItems.forEach(item => {
+                    item.style.boxShadow = '';
+                    item.style.borderColor = '#e0e0e0';
+                });
+            }, 3000);
         }
 
         // Инициализация
