@@ -13,9 +13,9 @@
             --gray: #6c757d;
             --age-blue: #2196f3;
             --age-pink: #e91e63;
-            --border-radius: 12px;
-            --shadow: 0 4px 12px rgba(0,0,0,0.15);
-            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --shadow: 0 3px 8px rgba(0,0,0,0.1);
+            --transition: all 0.2s ease;
         }
         
         * {
@@ -26,28 +26,28 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--dark);
             background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
         }
         
         .container {
-            max-width: 98%;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
+            padding: 20px 0;
+            margin-bottom: 20px;
             background: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            border: 2px solid #e0e0e0;
+            border: 1px solid #e0e0e0;
         }
         
         header::before {
@@ -56,180 +56,152 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         
         .date {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             color: var(--gray);
             font-weight: 500;
         }
         
         .schedule-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .activity-row {
+            display: flex;
+            align-items: stretch;
+            min-height: 60px;
             background: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
-            border: 2px solid #e0e0e0;
-            padding: 20px;
-            position: relative;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            overflow-y: visible;
-            position: relative;
-            max-height: 800px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 2000px;
-        }
-        
-        thead {
-            background: linear-gradient(90deg, var(--primary), #3a8c5c);
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        th, td {
-            padding: 16px 12px;
-            text-align: left;
-            border-bottom: 1px solid #e9ecef;
-            vertical-align: top;
-            position: relative;
-        }
-        
-        th {
-            font-weight: 600;
-            font-size: 1.05rem;
-            white-space: nowrap;
-        }
-        
-        tbody tr {
             transition: var(--transition);
-        }
-        
-        tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        tbody tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        .activity-name {
-            font-weight: 600;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-            padding: 5px 0;
-            min-width: 180px;
-        }
-        
-        .activity-name:hover {
-            color: var(--secondary);
-            text-decoration: underline;
-        }
-        
-        .activity-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background: #f9f9f9;
-            border-radius: 8px;
-            margin-top: 0;
-        }
-        
-        .activity-details.active {
-            max-height: 300px;
-            margin-top: 10px;
-            padding: 15px;
             border: 1px solid #e0e0e0;
         }
         
-        .age-blue {
-            border-left: 4px solid var(--age-blue);
+        .activity-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
         }
         
-        .age-pink {
-            border-left: 4px solid var(--age-pink);
+        .activity-name-col {
+            flex: 0 0 250px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
         }
         
-        .age {
-            padding: 3px 8px;
-            border-radius: 20px;
-            display: inline-block;
-            font-size: 0.9rem;
+        .activity-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .activity-title-text {
             font-weight: 600;
-            white-space: nowrap;
-        }
-        
-        .age-blue .age {
-            background: #e3f2fd;
-            color: #0d47a1;
-            border: 1px solid #bbdefb;
-        }
-        
-        .age-pink .age {
-            background: #fce4ec;
-            color: #880e4f;
-            border: 1px solid #f8bbd0;
-        }
-        
-        .duration {
             color: var(--primary);
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        
-        .price {
-            font-weight: 700;
-            color: var(--secondary);
-            font-size: 1.1rem;
-            white-space: nowrap;
-        }
-        
-        /* Временная шкала в таблице */
-        .time-header {
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-left: 1px solid rgba(255,255,255,0.3);
-            border-right: 1px solid rgba(255,255,255,0.3);
-            position: relative;
-            min-width: 30px;
-        }
-        
-        .time-header.hour {
-            background: rgba(0,0,0,0.1);
             font-size: 0.95rem;
+            flex: 1;
+            line-height: 1.3;
         }
         
-        .time-cell {
+        .expand-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .expand-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .activity-description {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0;
+            font-size: 0.85rem;
+            color: var(--dark);
+            line-height: 1.4;
+            padding: 0;
+        }
+        
+        .activity-description.active {
+            max-height: 200px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f8ff;
+            border-radius: 6px;
+            border: 1px solid #d1e7ff;
+        }
+        
+        .timeline-col {
+            flex: 1;
+            position: relative;
+            padding: 5px 0;
+            min-height: 60px;
+        }
+        
+        .timeline-grid {
+            display: flex;
+            height: 100%;
+            position: relative;
+        }
+        
+        .time-marker {
+            flex: 1;
             border-left: 1px solid #e0e0e0;
             position: relative;
-            min-width: 30px;
-            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 5px;
+        }
+        
+        .time-marker:first-child {
+            border-left: none;
+        }
+        
+        .time-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+            position: absolute;
+            bottom: -20px;
+            white-space: nowrap;
         }
         
         .activity-slot {
             position: absolute;
-            top: 4px;
-            bottom: 4px;
+            height: 50px;
             border-radius: 8px;
             padding: 8px 10px;
             color: white;
@@ -239,92 +211,107 @@
             flex-direction: column;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
             transition: var(--transition);
             cursor: pointer;
-            z-index: 10;
-            border: 2px solid rgba(255,255,255,0.4);
+            z-index: 2;
+            border: 2px solid rgba(255,255,255,0.3);
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            min-width: 60px;
+            min-width: 80px;
         }
         
         .activity-slot:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            z-index: 20;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+            z-index: 10;
         }
         
-        .activity-slot.active {
-            animation: pulse 2s infinite;
-            border-color: var(--secondary);
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-            50% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4); }
-            100% { box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        }
-        
-        .age-blue-activity { 
+        .age-blue-slot { 
             background: linear-gradient(135deg, var(--age-blue), #0d47a1); 
         }
         
-        .age-pink-activity { 
+        .age-pink-slot { 
             background: linear-gradient(135deg, var(--age-pink), #880e4f); 
         }
         
+        .slot-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
         .slot-time {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             opacity: 0.95;
-            margin-top: 2px;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .slot-time::before {
+            content: '🕒';
+            font-size: 0.6rem;
+        }
+        
+        .slot-details {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            opacity: 0.9;
+            margin-top: 2px;
         }
         
         .slot-age {
-            position: absolute;
-            top: 4px;
-            right: 5px;
             background: rgba(255,255,255,0.3);
-            backdrop-filter: blur(3px);
-            font-size: 0.65rem;
-            padding: 1px 4px;
-            border-radius: 8px;
+            padding: 2px 6px;
+            border-radius: 10px;
             font-weight: 600;
             border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(2px);
         }
         
-        .current-time-line {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: #ff4444;
-            z-index: 5;
-            pointer-events: none;
+        .slot-price {
+            background: rgba(255,255,255,0.3);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(2px);
         }
         
-        .current-time-line::before {
-            content: '';
+        .full-day-slot {
             position: absolute;
-            left: -6px;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            background: #ff4444;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 5px rgba(255,68,68,0.5);
+            left: 0;
+            right: 0;
+            height: 50px;
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            transition: var(--transition);
+            cursor: pointer;
+            z-index: 2;
+            border: 2px solid rgba(255,255,255,0.3);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, var(--primary), #2e7d32);
         }
         
         .legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 25px;
-            padding-top: 20px;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
             border-top: 2px dashed #ccc;
             background: white;
-            padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
@@ -333,91 +320,121 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
         
         .legend-color {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
             border: 2px solid white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             color: var(--gray);
-            font-size: 0.95rem;
-            margin-top: 40px;
+            font-size: 0.85rem;
+            margin-top: 25px;
             border-top: 2px solid #e0e0e0;
             background: #f8f9fa;
             border-radius: var(--border-radius);
         }
         
-        /* Фиксированные колонки */
-        .fixed-col {
-            position: sticky;
-            left: 0;
-            background: white;
-            z-index: 50;
-            box-shadow: 5px 0 5px -5px rgba(0,0,0,0.1);
-        }
-        
-        .fixed-col-2 {
-            position: sticky;
-            left: 250px;
-            background: white;
-            z-index: 49;
-            box-shadow: 5px 0 5px -5px rgba(0,0,0,0.1);
-            min-width: 300px;
-            max-width: 300px;
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 1400px) {
+        @media (max-width: 1200px) {
             .container {
                 max-width: 100%;
-                padding: 10px;
             }
             
-            .schedule-wrapper {
-                padding: 15px;
+            .activity-name-col {
+                flex: 0 0 220px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .activity-name-col {
+                flex: 0 0 200px;
             }
             
-            th, td {
-                padding: 12px 8px;
+            .activity-title-text {
                 font-size: 0.9rem;
-            }
-            
-            .activity-slot {
-                font-size: 0.75rem;
-                padding: 6px 8px;
-            }
-            
-            .slot-time {
-                font-size: 0.7rem;
             }
         }
         
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .date {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
-            .fixed-col-2 {
-                left: 200px;
-                min-width: 200px;
-                max-width: 200px;
+            .activity-row {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .activity-name-col {
+                flex: none;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            .timeline-col {
+                min-height: 50px;
+                padding: 10px 0;
+            }
+            
+            .activity-slot {
+                height: 45px;
+                font-size: 0.75rem;
+                padding: 6px 8px;
+            }
+            
+            .slot-details {
+                flex-direction: column;
+                gap: 2px;
+                align-items: flex-start;
             }
             
             .legend {
                 gap: 15px;
+                padding: 12px;
+            }
+            
+            footer {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .activity-name-col {
+                padding: 10px;
+            }
+            
+            .timeline-grid {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .time-marker {
+                min-width: 40px;
+            }
+            
+            .time-label {
+                bottom: -25px;
+            }
+            
+            .activity-slot {
+                min-width: 70px;
             }
         }
     </style>
@@ -426,562 +443,489 @@
     <div class="container">
         <header>
             <h1>Расписание мероприятий Зарядье Парк</h1>
-            <div class="date">30 декабря 2025 года (вторник) | Рабочий день: 10:00 - 21:00</div>
+            <div class="date">30 декабря 2025 года (вторник) | Рабочий день: 11:00 - 19:00</div>
         </header>
         
         <div class="schedule-wrapper">
-            <div class="table-container" id="table-container">
-                <table id="schedule-table">
-                    <thead>
-                        <tr>
-                            <th class="fixed-col" style="min-width: 200px; max-width: 200px;">Название занятия</th>
-                            <th class="fixed-col-2">Суть занятия</th>
-                            <th style="min-width: 80px;">Возраст</th>
-                            <th style="min-width: 80px;">Длит.</th>
-                            <th style="min-width: 100px;">Стоимость</th>
-                            <!-- Временные заголовки (10:00 - 21:00, шаг 15 минут) -->
-                            <th class="time-header hour" colspan="4">10:00</th>
-                            <th class="time-header hour" colspan="4">11:00</th>
-                            <th class="time-header hour" colspan="4">12:00</th>
-                            <th class="time-header hour" colspan="4">13:00</th>
-                            <th class="time-header hour" colspan="4">14:00</th>
-                            <th class="time-header hour" colspan="4">15:00</th>
-                            <th class="time-header hour" colspan="4">16:00</th>
-                            <th class="time-header hour" colspan="4">17:00</th>
-                            <th class="time-header hour" colspan="4">18:00</th>
-                            <th class="time-header hour" colspan="4">19:00</th>
-                            <th class="time-header hour" colspan="4">20:00</th>
-                        </tr>
-                        <tr>
-                            <th class="fixed-col"></th>
-                            <th class="fixed-col-2"></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <!-- 15-минутные интервалы -->
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                            <th class="time-header">00</th>
-                            <th class="time-header">15</th>
-                            <th class="time-header">30</th>
-                            <th class="time-header">45</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Кто в пруду? -->
-                        <tr class="age-blue" id="activity-1">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-1')">Кто в пруду?</span>
-                                </div>
-                                <div class="activity-details" id="details-activity-1">
-                                    При помощи стереоскопических микроскопов мы изучим строение и особенности жизни нескольких важных классов водных беспозвоночных, а также узнаем об их важнейшей роли в экосистемах водоёмов.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">При помощи стереоскопических микроскопов мы изучим строение и особенности жизни нескольких важных классов водных беспозвоночных, а также узнаем об их важнейшей роли в экосистемах водоёмов. Участников ждет много новых знакомств с причудливыми обитателями как небольших луж, так и горных ручьёв, пресных рек, солёных озёр и морей!</td>
-                            <td><span class="age">7+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">600 ₽</td>
-                            
-                            <!-- Временная шкала: 44 ячейки по 15 минут -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td>
-                            <!-- 11:30-12:15 -->
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-1')">
-                                    Кто в пруду?
-                                    <div class="slot-time">11:30-12:15</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-12:15 -->
-                            <!-- Остальные ячейки до 21:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 15:00-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+            <!-- Кто в пруду? -->
+            <div class="activity-row" id="activity-1">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Кто в пруду?</div>
+                        <button class="expand-btn" onclick="toggleDescription(1)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-1">
+                        Стереоскопические микроскопы для изучения водных экосистем. Наблюдение за строением и жизнью беспозвоночных. Сравнение обитателей луж, ручьев, рек, озер и морей.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-1">
+                        <!-- 11:00-19:00, 8 часов = 8 маркеров -->
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Мастерская юного синоптика -->
-                        <tr class="age-blue" id="activity-2">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-2')">Мастерская юного синоптика</span>
+                        <!-- Занятие 11:30-12:15 (45 мин) -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 12.5%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(1)">
+                            <div class="slot-content">
+                                <div class="slot-time">11:30-12:15</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">600 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-2">
-                                    Поговорим про температуру на Земле, узнаем, почему происходит смена времен года, и как отличаются лето и зима в разных полушариях.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Поговорим про температуру на Земле, узнаем, почему происходит смена времен года, и как отличаются лето и зима в разных полушариях. Рассмотрим круговорот воды в природе: выясним, как формируются облака, какие их типы существуют, поговорим про осадки и выясним, как образуется дождь, снег, град. Разберем, что такое атмосферное давление и как оно влияет на погоду, узнаем, чем отличаются циклоны от антициклонов. Рассмотрим метеостанцию и приборы, которые помогают специалистам в исследованиях погоды. В практической части создадим барометр своими руками, узнаем, как он работает, чтобы дома понаблюдать за давлением и попробовать предсказать погоду.</td>
-                            <td><span class="age">7+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">600 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <!-- 14:45-15:30 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-2')">
-                                    Мастерская юного синоптика
-                                    <div class="slot-time">14:45-15:30</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td> <!-- 15:30-16:00 -->
-                            <!-- 16:15-17:00 -->
-                            <td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-2')">
-                                    Мастерская юного синоптика
-                                    <div class="slot-time">16:15-17:00</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Мастерская юного синоптика -->
+            <div class="activity-row" id="activity-2">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Мастерская юного синоптика</div>
+                        <button class="expand-btn" onclick="toggleDescription(2)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-2">
+                        Барометр, атмосферное давление и циклоны. Работа с метеостанцией и приборами для прогнозирования погоды. Создание барометра своими руками для наблюдений и предсказаний.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-2">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Феномен снегурочки -->
-                        <tr class="age-blue" id="activity-3">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-3')">Феномен снегурочки</span>
+                        <!-- 14:45-15:30 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 48.125%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(2)">
+                            <div class="slot-content">
+                                <div class="slot-time">14:45-15:30</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">600 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-3">
-                                    Вы узнаете, что такое агрегатные состояния и чем снег отличается от льда, проведете научные эксперименты и получите горячий иней из кристаллов ацетата натрия.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Вы узнаете, что такое агрегатные состояния и чем снег отличается от льда, проведете научные эксперименты и получите горячий иней из кристаллов ацетата натрия, увидите, как выглядит снежинка под микроскопом. Узнаете, какие бывают виды снежинок и получите знания по физике и химии и научитесь делать искусственный снег.</td>
-                            <td><span class="age">7+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">750 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <!-- 12:15-13:00 -->
-                            <td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-3')">
-                                    Феномен снегурочки
-                                    <div class="slot-time">12:15-13:00</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <!-- 13:45-14:30 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-3')">
-                                    Феномен снегурочки
-                                    <div class="slot-time">13:45-14:30</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:30-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
                         
-                        <!-- Секреты теплокровных -->
-                        <tr class="age-blue" id="activity-4">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-4')">Секреты теплокровных</span>
+                        <!-- 16:15-17:00 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 65%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(2)">
+                            <div class="slot-content">
+                                <div class="slot-time">16:15-17:00</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">600 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-4">
-                                    На мастер-классе дети раскроют тайны своей внутренней обогревательной системы и выяснят, как нас греет кровь, почему появляются мурашки, помогает ли от холода дрожание.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">На мастер-классе «Секреты теплокровных» дети раскроют тайны своей внутренней обогревательной системы и выяснят, как нас греет кровь, почему появляются мурашки, помогает ли от холода дрожание, почему шерсть животных — это природный термос. Проведём увлекательные эксперименты и разберёмся, как работает терморегуляция. И в финале — научимся распознавать признаки переохлаждения и оказывать первую помощь.</td>
-                            <td><span class="age">7+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">750 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <!-- 13:30-14:15 -->
-                            <td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-4')">
-                                    Секреты теплокровных
-                                    <div class="slot-time">13:30-14:15</div>
-                                    <div class="slot-age">7+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:15-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Феномен снегурочки -->
+            <div class="activity-row" id="activity-3">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Феномен снегурочки</div>
+                        <button class="expand-btn" onclick="toggleDescription(3)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-3">
+                        Агрегатные состояния вещества и кристаллы ацетата натрия. Наблюдение снежинок под микроскопом. Проведение экспериментов и создание искусственного снега.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-3">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Куда ведут свет? -->
-                        <tr class="age-blue" id="activity-5">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-5')">Куда ведут свет?</span>
+                        <!-- 12:15-13:00 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 18.75%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(3)">
+                            <div class="slot-content">
+                                <div class="slot-time">12:15-13:00</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">750 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-5">
-                                    Если посветить лазерной указкой прямо, то и луч пойдёт прямо. Но как сделать так, чтобы он свернул в сторону, изогнулся по кривой?
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Если посветить лазерной указкой прямо, то и луч пойдёт прямо. Но как сделать так, чтобы он свернул в сторону, изогнулся по кривой? Нам предстоит узнать, что такое оптическое волокно, из которого делают световоды, понять, почему луч идёт внутри световода. А помогут нам в этом наглядные демонстрации, где мы увидим преломление света в толще жидкости и заставим светиться струю воды. А в конце программы соберём декоративный световодный светильник, который можно забрать с собой.</td>
-                            <td><span class="age">9+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">750 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <!-- 13:00-13:45 -->
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-5')">
-                                    Куда ведут свет?
-                                    <div class="slot-time">13:00-13:45</div>
-                                    <div class="slot-age">9+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:45-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
                         
-                        <!-- Природа цвета -->
-                        <tr class="age-blue" id="activity-6">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-6')">Природа цвета</span>
+                        <!-- 13:45-14:30 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 35.625%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(3)">
+                            <div class="slot-content">
+                                <div class="slot-time">13:45-14:30</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">750 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-6">
-                                    Мы все видели радугу и можем назвать её семь цветов. Но откуда берутся эти цвета и как получить остальные?
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Мы все видели радугу и можем назвать её семь цветов. Но откуда берутся эти цвета и как получить остальные? Опытным путём мы изучим смешение цветов, используя светодиоды, микроскопы и другое оборудование. Узнаем, что такое RGB и CMYK и где их используют. Поймём, почему на экране картинка ярче, чем при печати. Всё это позволит нам понять природу цвета.</td>
-                            <td><span class="age">9+</span></td>
-                            <td class="duration">60 мин</td>
-                            <td class="price">600 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <!-- 15:45-16:45 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0; width: calc(400% + 60px);"
-                                     onclick="highlightActivity('activity-6')">
-                                    Природа цвета
-                                    <div class="slot-time">15:45-16:45</div>
-                                    <div class="slot-age">9+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:45-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Секреты теплокровных -->
+            <div class="activity-row" id="activity-4">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Секреты теплокровных</div>
+                        <button class="expand-btn" onclick="toggleDescription(4)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-4">
+                        Эксперименты по терморегуляции человеческого тела. Изучение работы внутренней обогревательной системы и термозащиты. Освоение навыков распознавания признаков переохлаждения и первой помощи.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-4">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Мир минералов -->
-                        <tr class="age-blue" id="activity-7">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-7')">Мир минералов</span>
+                        <!-- 13:30-14:15 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 31.25%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(4)">
+                            <div class="slot-content">
+                                <div class="slot-time">13:30-14:15</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">750 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-7">
-                                    На занятии расскажем, из каких минералов сделан мир вокруг нас, рассмотрим 10 минералов и горных пород.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">На занятии расскажем, из каких минералов сделан мир вокруг нас, рассмотрим 10 минералов и горных пород: узнаем, какие они бывают, чем отличаются и как образуются; поговорим о свойствах и применении сфалерита, флюорита, серы, кварца. В дополнение разберем, что такое кристаллическая решетка и аморфные тела, а также как располагаются атомы и молекулы в разных веществах. В практической части рассмотрим кристаллы аметиста, пирита, камчатской серы и других минералов через стереоскопический микроскоп.</td>
-                            <td><span class="age">9+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">600 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 15:00-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <!-- 17:45-18:30 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-7')">
-                                    Мир минералов
-                                    <div class="slot-time">17:45-18:30</div>
-                                    <div class="slot-age">9+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:30-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Куда ведут свет? -->
+            <div class="activity-row" id="activity-5">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Куда ведут свет?</div>
+                        <button class="expand-btn" onclick="toggleDescription(5)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-5">
+                        Оптическое волокно, световоды и преломление света в жидкости. Демонстрации световых явлений с использованием лазеров и воды. Сборка декоративного световодного светильника для дома.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-5">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Фотография в синих тонах -->
-                        <tr class="age-pink" id="activity-8">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-8')">Фотография в синих тонах</span>
+                        <!-- 13:00-13:45 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 25%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(5)">
+                            <div class="slot-content">
+                                <div class="slot-time">13:00-13:45</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">9+</span>
+                                    <span class="slot-price">750 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-8">
-                                    Поговорим про историю фотографии, узнаем, как фотография связана с развитием химии.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Поговорим про историю фотографии, узнаем, как фотография связана с развитием химии. Рассмотрим архаичный метод фотопечати — цианотипию — способ фотографической печати открытый в XIX веке, благодаря которому получаются ретро-отпечатки голубого оттенка. Далее мы приготовим фоточувствительную смесь и создадим «отпечаток-фотографию» в этой старинной технике.</td>
-                            <td><span class="age">10+</span></td>
-                            <td class="duration">60 мин</td>
-                            <td class="price">900 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 15:00-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <!-- 17:30-18:30 -->
-                            <td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-pink-activity" 
-                                     style="left: 0; right: 0; width: calc(400% + 60px);"
-                                     onclick="highlightActivity('activity-8')">
-                                    Фотография в синих тонах
-                                    <div class="slot-time">17:30-18:30</div>
-                                    <div class="slot-age">10+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:30-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Природа цвета -->
+            <div class="activity-row" id="activity-6">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Природа цвета</div>
+                        <button class="expand-btn" onclick="toggleDescription(6)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-6">
+                        Смешение цветов с помощью светодиодов и микроскопов. Изучение цветовых моделей RGB и CMYK, их применения в цифровых и печатных медиа. Практическое исследование яркости и оттенков.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-6">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Икра -->
-                        <tr class="age-pink" id="activity-9">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-9')">Икра</span>
+                        <!-- 15:45-16:45 (60 мин) -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 60%; width: 25%; top: 5px;"
+                             onclick="highlightActivity(6)">
+                            <div class="slot-content">
+                                <div class="slot-time">15:45-16:45</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">9+</span>
+                                    <span class="slot-price">600 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-9">
-                                    Сначала рассмотрим способы добычи натуральной икры, узнаем про рыбные фермы и поразмышляем, чем можно заменить икру.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Сначала рассмотрим способы добычи натуральной икры, узнаем про рыбные фермы и поразмышляем, чем можно заменить икру. Далее поговорим о том, как появилась молекулярная кулинария, и какие блюда можно «приготовить» в химической лаборатории. Узнаем, как придать икре разные ароматы и какое оборудование для этого необходимо. В практической части сделаем икру с ароматами апельсина и жевательной резинки. Попробовать икру не получится — в лаборатории нельзя употреблять пищу — но поэкспериментировать с ароматами нам точно удастся.</td>
-                            <td><span class="age">12+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">800 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 15:00-16:00 -->
-                            <!-- 16:00-16:45 -->
-                            <td class="time-cell">
-                                <div class="activity-slot age-pink-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-9')">
-                                    Икра
-                                    <div class="slot-time">16:00-16:45</div>
-                                    <div class="slot-age">12+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:45-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Мир минералов -->
+            <div class="activity-row" id="activity-7">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Мир минералов</div>
+                        <button class="expand-btn" onclick="toggleDescription(7)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-7">
+                        Изучение кристаллических решеток и аморфных тел. Рассмотрение минералов (аметиста, пирита, серы) через стереоскопический микроскоп. Изучение свойств и применения сфалерита, флюорита, серы и кварца.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-7">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Формула НГ игрушки -->
-                        <tr class="age-pink" id="activity-10">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-10')">Формула НГ игрушки</span>
+                        <!-- 17:45-18:30 -->
+                        <div class="activity-slot age-blue-slot" 
+                             style="left: 85%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(7)">
+                            <div class="slot-content">
+                                <div class="slot-time">17:45-18:30</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">9+</span>
+                                    <span class="slot-price">600 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-10">
-                                    Это новогоднее занятие по химии посвящено удивительному явлению люминесценции.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Это новогоднее занятие по химии посвящено удивительному явлению люминесценции. Слушатели познакомятся с семью различными веществами, которые способны светиться яркими цветами под УФ-лампой. Они будут наблюдать свечение, сравнивать его и обсуждать, чем вещества отличаются друг от друга. Занятие построено в формате интерактивного мастер-класса, где участники становятся настоящими исследователями. После изучения свойств светящихся веществ, они создадут оригинальную новогоднюю игрушку. Получившийся подарок будет не только красивым, но и научным - с настоящим химическим декором.</td>
-                            <td><span class="age">12+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">750 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <!-- 12:00-12:45 -->
-                            <td class="time-cell">
-                                <div class="activity-slot age-pink-activity" 
-                                     style="left: 0; right: 0;"
-                                     onclick="highlightActivity('activity-10')">
-                                    Формула НГ игрушки
-                                    <div class="slot-time">12:00-12:45</div>
-                                    <div class="slot-age">12+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:45-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 17:00-18:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:00-19:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 19:00-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Фотография в синих тонах -->
+            <div class="activity-row" id="activity-8">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Фотография в синих тонах</div>
+                        <button class="expand-btn" onclick="toggleDescription(8)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-8">
+                        Цианотипия - архаичный метод фотопечати XIX века. Приготовление фоточувствительной смеси для получения голубых отпечатков. Создание «отпечатка-фотографии» в старинной технике с голубыми тонами.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-8">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Тайна ароматов -->
-                        <tr class="age-pink" id="activity-11">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-11')">Тайна ароматов</span>
+                        <!-- 17:30-18:30 (60 мин) -->
+                        <div class="activity-slot age-pink-slot" 
+                             style="left: 81.25%; width: 25%; top: 5px;"
+                             onclick="highlightActivity(8)">
+                            <div class="slot-content">
+                                <div class="slot-time">17:30-18:30</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">10+</span>
+                                    <span class="slot-price">900 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-11">
-                                    Разберем методы получения ароматных веществ, выясним, что такое паровая экстракция, дистилляция и анфлераж.
-                                </div>
-                            </td>
-                            <td class="fixed-col-2">Разберем методы получения ароматных веществ, выясним, что такое паровая экстракция, дистилляция и анфлераж. Поговорим о работе парфюмера и принципах построения парфюмерной композиции. В практической части выделим эфирное масло из цитрусовых, мяты и мелиссы, проведем паровую экстракцию, научимся раскладывать ароматы по нотам и создадим собственную парфюмерную композицию. Полученными натуральными духами можно пользоваться.</td>
-                            <td><span class="age">12+</span></td>
-                            <td class="duration">60 мин</td>
-                            <td class="price">900 ₽</td>
-                            
-                            <!-- Временная шкала -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 10:00-11:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 11:00-12:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 12:00-13:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 13:00-14:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 14:00-15:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 15:00-16:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 16:00-17:00 -->
-                            <!-- 17:45-18:45 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell">
-                                <div class="activity-slot age-pink-activity" 
-                                     style="left: 0; right: 0; width: calc(400% + 60px);"
-                                     onclick="highlightActivity('activity-11')">
-                                    Тайна ароматов
-                                    <div class="slot-time">17:45-18:45</div>
-                                    <div class="slot-age">12+</div>
-                                </div>
-                            </td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 18:45-20:00 -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td> <!-- 20:00-21:00 -->
-                        </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Икра -->
+            <div class="activity-row" id="activity-9">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Икра</div>
+                        <button class="expand-btn" onclick="toggleDescription(9)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-9">
+                        Молекулярная кулинария и химическая лаборатория. Способы добычи натуральной икры и создание искусственных заменителей. Получение икры с ароматами апельсина и жевательной резинки.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-9">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
                         
-                        <!-- Посещение Старого Английского двора -->
-                        <tr class="age-blue" id="activity-12">
-                            <td class="fixed-col">
-                                <div class="activity-header">
-                                    <span class="activity-name" onclick="showDetails('activity-12')">Посещение Старого Английского двора</span>
+                        <!-- 16:00-16:45 -->
+                        <div class="activity-slot age-pink-slot" 
+                             style="left: 62.5%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(9)">
+                            <div class="slot-content">
+                                <div class="slot-time">16:00-16:45</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">12+</span>
+                                    <span class="slot-price">800 ₽</span>
                                 </div>
-                                <div class="activity-details" id="details-activity-12">
-                                    В преддверии Нового года и Рождества в Подклете музея откроется выставка «Кукольный дом. Традиции театральных представлений».
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Формула НГ игрушки -->
+            <div class="activity-row" id="activity-10">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Формула НГ игрушки</div>
+                        <button class="expand-btn" onclick="toggleDescription(10)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-10">
+                        Исследование люминесценции семи различных веществ под УФ-лампой. Наблюдение и сравнение свечения разных химических соединений. Создание оригинальной новогодней игрушки с научным химическим декором.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-10">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
+                        
+                        <!-- 12:00-12:45 -->
+                        <div class="activity-slot age-pink-slot" 
+                             style="left: 12.5%; width: 18.75%; top: 5px;"
+                             onclick="highlightActivity(10)">
+                            <div class="slot-content">
+                                <div class="slot-time">12:00-12:45</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">12+</span>
+                                    <span class="slot-price">750 ₽</span>
                                 </div>
-                            </td>
-                            <td class="fixed-col-2">В преддверии Нового года и Рождества в Подклете музея откроется выставка «Кукольный дом. Традиции театральных представлений». В Верхних Палатах вы увидите, как был устроен быт английских купцов и предпринимателей XVI–XVII веков, что они ввозили и вывозили из России и как была организована торговля.</td>
-                            <td><span class="age">7+</span></td>
-                            <td class="duration">45 мин</td>
-                            <td class="price">Взрослые: 500 ₽<br>Дети: 250 ₽</td>
-                            
-                            <!-- Временная шкала - весь день -->
-                            <td class="time-cell">
-                                <div class="activity-slot age-blue-activity" 
-                                     style="left: 0; right: 0; width: calc(4400% + 660px);"
-                                     onclick="highlightActivity('activity-12')">
-                                    Посещение Старого Английского двора
-                                    <div class="slot-time">Весь день (10:00-21:00)</div>
-                                    <div class="slot-age">7+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Тайна ароматов -->
+            <div class="activity-row" id="activity-11">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Тайна ароматов</div>
+                        <button class="expand-btn" onclick="toggleDescription(11)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-11">
+                        Паровая экстракция, дистилляция и анфлераж. Принципы построения парфюмерной композиции. Выделим эфирное масло из цитрусовых, мяты и мелиссы, создадим собственную парфюмерную композицию.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-11">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
+                        
+                        <!-- 17:45-18:45 (60 мин) -->
+                        <div class="activity-slot age-pink-slot" 
+                             style="left: 85%; width: 25%; top: 5px;"
+                             onclick="highlightActivity(11)">
+                            <div class="slot-content">
+                                <div class="slot-time">17:45-18:45</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">12+</span>
+                                    <span class="slot-price">900 ₽</span>
                                 </div>
-                            </td>
-                            <!-- Остальные 43 ячейки пустые, но занятие занимает всю ширину -->
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td><td class="time-cell"></td>
-                            <td class="time-cell"></td><td class="time-cell"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Посещение Старого Английского двора -->
+            <div class="activity-row" id="activity-12">
+                <div class="activity-name-col">
+                    <div class="activity-title">
+                        <div class="activity-title-text">Посещение Старого Английского двора</div>
+                        <button class="expand-btn" onclick="toggleDescription(12)">+</button>
+                    </div>
+                    <div class="activity-description" id="desc-12">
+                        Выставка «Кукольный дом. Традиции театральных представлений». Устройство быта английских купцов XVI–XVII веков, организация торговли, ввоз и вывоз товаров из России.
+                    </div>
+                </div>
+                <div class="timeline-col">
+                    <div class="timeline-grid" id="timeline-12">
+                        <div class="time-marker"><div class="time-label">11:00</div></div>
+                        <div class="time-marker"><div class="time-label">12:00</div></div>
+                        <div class="time-marker"><div class="time-label">13:00</div></div>
+                        <div class="time-marker"><div class="time-label">14:00</div></div>
+                        <div class="time-marker"><div class="time-label">15:00</div></div>
+                        <div class="time-marker"><div class="time-label">16:00</div></div>
+                        <div class="time-marker"><div class="time-label">17:00</div></div>
+                        <div class="time-marker"><div class="time-label">18:00</div></div>
+                        
+                        <!-- Весь день -->
+                        <div class="full-day-slot" onclick="highlightActivity(12)">
+                            <div class="slot-content">
+                                <div class="slot-time">Весь день (10:00-21:00)</div>
+                                <div class="slot-details">
+                                    <span class="slot-age">7+</span>
+                                    <span class="slot-price">500/250 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -995,10 +939,8 @@
                 <span>Возраст 10+ лет</span>
             </div>
             <div class="legend-item">
-                <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 15px; height: 15px; background: #ff4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 5px rgba(255,68,68,0.5);"></div>
-                </div>
-                <span>Текущее время</span>
+                <div class="legend-color" style="background: var(--primary);"></div>
+                <span>Специальное мероприятие</span>
             </div>
         </div>
         
@@ -1010,44 +952,51 @@
     </div>
     
     <script>
-        // Функция для показа/скрытия деталей занятия
-        function showDetails(activityId) {
-            const detailsElement = document.getElementById(`details-${activityId}`);
-            const isActive = detailsElement.classList.contains('active');
+        // Функция для переключения описания
+        function toggleDescription(activityId) {
+            const descElement = document.getElementById(`desc-${activityId}`);
+            const btnElement = document.querySelector(`#activity-${activityId} .expand-btn`);
             
-            // Закрываем все открытые детали
-            document.querySelectorAll('.activity-details.active').forEach(el => {
-                el.classList.remove('active');
+            const isActive = descElement.classList.contains('active');
+            
+            // Закрываем все описания
+            document.querySelectorAll('.activity-description.active').forEach(el => {
+                if (el.id !== `desc-${activityId}`) {
+                    el.classList.remove('active');
+                    const otherBtn = document.querySelector(`#${el.id.replace('desc-', 'activity-')} .expand-btn`);
+                    if (otherBtn) otherBtn.textContent = '+';
+                }
             });
             
-            // Если детали были закрыты - открываем их
-            if (!isActive) {
-                detailsElement.classList.add('active');
+            // Переключаем текущее
+            if (isActive) {
+                descElement.classList.remove('active');
+                btnElement.textContent = '+';
+            } else {
+                descElement.classList.add('active');
+                btnElement.textContent = '−';
                 
                 // Прокручиваем к элементу
-                document.getElementById(activityId).scrollIntoView({
+                document.getElementById(`activity-${activityId}`).scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
                 });
-                
-                // Подсвечиваем строку
-                highlightActivity(activityId);
             }
         }
         
-        // Функция для подсветки строки активности
+        // Функция для подсветки активности
         function highlightActivity(activityId) {
-            const element = document.getElementById(activityId);
+            const element = document.getElementById(`activity-${activityId}`);
             if (element) {
                 // Убираем подсветку со всех строк
-                document.querySelectorAll('tbody tr').forEach(el => {
-                    el.style.backgroundColor = '';
+                document.querySelectorAll('.activity-row').forEach(el => {
                     el.style.boxShadow = '';
+                    el.style.borderColor = '#e0e0e0';
                 });
                 
                 // Подсвечиваем выбранную строку
-                element.style.backgroundColor = '#fff8e1';
-                element.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.3)';
+                element.style.boxShadow = '0 5px 15px rgba(212, 175, 55, 0.4)';
+                element.style.borderColor = 'var(--secondary)';
                 
                 // Прокручиваем к строке
                 element.scrollIntoView({
@@ -1055,107 +1004,18 @@
                     block: 'center'
                 });
                 
-                // Показываем детали
-                const detailsElement = document.getElementById(`details-${activityId}`);
-                if (detailsElement) {
-                    // Закрываем все открытые детали
-                    document.querySelectorAll('.activity-details.active').forEach(el => {
-                        el.classList.remove('active');
-                    });
-                    
-                    // Открываем детали текущего занятия
-                    detailsElement.classList.add('active');
-                }
-                
-                // Снимаем подсветку через 5 секунд
+                // Снимаем подсветку через 3 секунды
                 setTimeout(() => {
-                    element.style.backgroundColor = '';
                     element.style.boxShadow = '';
-                }, 5000);
-            }
-        }
-        
-        // Функция для обновления линии текущего времени
-        function updateCurrentTimeLine() {
-            const now = new Date();
-            const startHour = 10; // Начало рабочего дня
-            const endHour = 21;   // Конец рабочего дня
-            
-            // Создаем тестовую дату 30 декабря 2025
-            const scheduleDate = new Date(2025, 11, 30);
-            
-            // Устанавливаем часы и минуты из текущего времени
-            scheduleDate.setHours(now.getHours());
-            scheduleDate.setMinutes(now.getMinutes());
-            
-            const currentHour = scheduleDate.getHours();
-            const currentMinute = scheduleDate.getMinutes();
-            
-            // Проверяем, находится ли текущее время в рабочем интервале
-            if (currentHour >= startHour && currentHour < endHour) {
-                const totalMinutes = (currentHour - startHour) * 60 + currentMinute;
-                const columnIndex = Math.floor(totalMinutes / 15); // Каждая колонка = 15 минут
-                
-                // Создаем или обновляем линию текущего времени
-                let timeLine = document.querySelector('.current-time-line');
-                if (!timeLine) {
-                    timeLine = document.createElement('div');
-                    timeLine.className = 'current-time-line';
-                    document.getElementById('table-container').appendChild(timeLine);
-                }
-                
-                // Находим позицию соответствующей колонки
-                const timeCells = document.querySelectorAll('.time-cell');
-                if (timeCells.length > columnIndex) {
-                    const targetCell = timeCells[columnIndex];
-                    const rect = targetCell.getBoundingClientRect();
-                    const containerRect = document.getElementById('table-container').getBoundingClientRect();
-                    
-                    const position = rect.left - containerRect.left + rect.width / 2;
-                    timeLine.style.left = `${position}px`;
-                    timeLine.style.display = 'block';
-                    
-                    // Добавляем подпись с временем
-                    if (!timeLine.querySelector('.time-label')) {
-                        const timeLabel = document.createElement('div');
-                        timeLabel.className = 'time-label';
-                        timeLabel.textContent = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
-                        timeLabel.style.position = 'absolute';
-                        timeLabel.style.top = '-25px';
-                        timeLabel.style.left = '-20px';
-                        timeLabel.style.background = '#ff4444';
-                        timeLabel.style.color = 'white';
-                        timeLabel.style.padding = '2px 6px';
-                        timeLabel.style.borderRadius = '4px';
-                        timeLabel.style.fontSize = '0.8rem';
-                        timeLabel.style.fontWeight = 'bold';
-                        timeLabel.style.whiteSpace = 'nowrap';
-                        timeLine.appendChild(timeLabel);
-                    }
-                }
-            } else {
-                // Скрываем линию, если время вне рабочего интервала
-                const timeLine = document.querySelector('.current-time-line');
-                if (timeLine) {
-                    timeLine.style.display = 'none';
-                }
+                    element.style.borderColor = '#e0e0e0';
+                }, 3000);
             }
         }
         
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
-            updateCurrentTimeLine();
-            setInterval(updateCurrentTimeLine, 60000); // Обновляем каждую минуту
-            
-            // Добавляем обработчики для названий занятий
-            document.querySelectorAll('.activity-name').forEach(name => {
-                name.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            });
-            
             // Добавляем обработчики для окошек мероприятий
-            document.querySelectorAll('.activity-slot').forEach(slot => {
+            document.querySelectorAll('.activity-slot, .full-day-slot').forEach(slot => {
                 slot.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
