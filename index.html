@@ -258,12 +258,53 @@
             z-index: 10;
         }
         
+        /* Голубые слоты (7-9 лет) - 75% ширины, отступ сверху 5px */
         .age-blue-slot { 
-            background: linear-gradient(135deg, var(--age-blue), #0d47a1); 
+            background: linear-gradient(135deg, var(--age-blue), #0d47a1);
+            width: 75% !important;
+            left: 12.5% !important; /* Центрируем: (100% - 75%) / 2 = 12.5% */
+            top: 5px;
         }
         
+        /* Розовые слоты (10+ лет) - 50% ширины, отступ сверху 15px */
         .age-pink-slot { 
-            background: linear-gradient(135deg, var(--age-pink), #880e4f); 
+            background: linear-gradient(135deg, var(--age-pink), #880e4f);
+            width: 50% !important;
+            left: 25% !important; /* Центрируем: (100% - 50%) / 2 = 25% */
+            top: 15px;
+        }
+        
+        /* Событие на весь день - убираем на задний план */
+        .full-day-slot {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 50px;
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            z-index: 1; /* Уменьшили z-index */
+            border: 2px solid rgba(255,255,255,0.3);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, rgba(26, 93, 56, 0.7), rgba(46, 125, 50, 0.7)); /* Полупрозрачный */
+            box-shadow: none; /* Убираем тень, чтобы не перекрывало */
+            width: 90% !important;
+            left: 5% !important; /* Центрируем: (100% - 90%) / 2 = 5% */
+            top: 25px;
+        }
+        
+        .full-day-slot:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, rgba(26, 93, 56, 0.8), rgba(46, 125, 50, 0.8));
+            z-index: 2; /* При наведении поднимаем */
         }
         
         .slot-content {
@@ -311,29 +352,6 @@
             font-weight: 600;
             border: 1px solid rgba(255,255,255,0.5);
             backdrop-filter: blur(2px);
-        }
-        
-        .full-day-slot {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 50px;
-            border-radius: 8px;
-            padding: 8px 10px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            transition: var(--transition);
-            cursor: pointer;
-            z-index: 2;
-            border: 2px solid rgba(255,255,255,0.3);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, var(--primary), #2e7d32);
         }
         
         /* Мобильная версия - улучшенная */
@@ -493,6 +511,35 @@
             border-top: 2px solid #e0e0e0;
             background: #f8f9fa;
             border-radius: var(--border-radius);
+        }
+        
+        /* Мобильная версия - стили для разных типов мероприятий */
+        .mobile-activity-item.age-blue {
+            border-left: 4px solid var(--age-blue);
+            background: linear-gradient(90deg, rgba(33, 150, 243, 0.1) 0%, rgba(255,255,255,1) 30%);
+        }
+        
+        .mobile-activity-item.age-pink {
+            border-left: 4px solid var(--age-pink);
+            background: linear-gradient(90deg, rgba(233, 30, 99, 0.1) 0%, rgba(255,255,255,1) 30%);
+        }
+        
+        .mobile-activity-item.full-day {
+            border-left: 4px solid var(--primary);
+            background: linear-gradient(90deg, rgba(26, 93, 56, 0.1) 0%, rgba(255,255,255,1) 30%);
+            border: 1px dashed var(--primary);
+            opacity: 0.9;
+        }
+        
+        /* В мобильной группе "Весь день" */
+        .mobile-group-header[data-group="Весь день"] {
+            background: linear-gradient(90deg, var(--primary), #2e7d32);
+        }
+        
+        .mobile-group-header[data-group="Весь день"]::after {
+            content: ' (10:00-21:00)';
+            font-size: 0.8em;
+            opacity: 0.9;
         }
         
         @media (max-width: 1200px) {
@@ -1436,6 +1483,7 @@
                     const header = document.createElement('div');
                     header.className = 'mobile-group-header';
                     header.textContent = groupName;
+                    header.setAttribute('data-group', groupName);
                     
                     const content = document.createElement('div');
                     content.className = 'mobile-group-content';
@@ -1453,6 +1501,10 @@
                     timeGroups[groupName].forEach(activity => {
                         const activityDiv = document.createElement('div');
                         activityDiv.className = `mobile-activity-item ${activity.ageClass}`;
+                        // Добавляем класс full-day для мероприятия на весь день
+                        if (activity.timeSlot.includes('Весь день')) {
+                            activityDiv.classList.add('full-day');
+                        }
                         activityDiv.onclick = () => highlightMobileActivity(activity.id);
                         
                         activityDiv.innerHTML = `
@@ -1500,6 +1552,10 @@
                 const card = document.createElement('div');
                 card.className = 'mobile-activity-item';
                 card.classList.add(activity.ageClass);
+                // Добавляем класс full-day для мероприятия на весь день
+                if (activity.times[0].includes('Весь день')) {
+                    card.classList.add('full-day');
+                }
                 card.onclick = () => toggleMobileCard(activity.id);
                 
                 // Собираем все временные слоты в одну строку
@@ -1571,11 +1627,44 @@
             }, 3000);
         }
 
+        // Функция для переключения мобильной карточки
+        function toggleMobileCard(activityId) {
+            // Здесь можно добавить логику для открытия подробной информации о мероприятии
+            highlightMobileActivity(activityId);
+        }
+
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             // Создаем мобильные представления
             createMobileTimeline();
             createMobileCards();
+            
+            // Обновляем позиции слотов для лучшего отображения
+            document.querySelectorAll('.activity-slot, .full-day-slot').forEach(slot => {
+                // Получаем текущие значения left и width
+                const currentLeft = parseFloat(slot.style.left);
+                const currentWidth = parseFloat(slot.style.width);
+                
+                if (slot.classList.contains('age-blue-slot')) {
+                    // Голубые слоты - 75% ширины, центрируем
+                    slot.style.width = '75%';
+                    const newLeft = currentLeft - (currentWidth * 0.25) / 2;
+                    slot.style.left = `${newLeft}%`;
+                    slot.style.top = '5px';
+                } else if (slot.classList.contains('age-pink-slot')) {
+                    // Розовые слоты - 50% ширины, центрируем
+                    slot.style.width = '50%';
+                    const newLeft = currentLeft - (currentWidth * 0.50) / 2;
+                    slot.style.left = `${newLeft}%`;
+                    slot.style.top = '15px';
+                } else if (slot.classList.contains('full-day-slot')) {
+                    // События на весь день - 90% ширины
+                    slot.style.width = '90%';
+                    slot.style.left = '5%';
+                    slot.style.top = '25px';
+                    slot.style.zIndex = '1';
+                }
+            });
             
             // По умолчанию показываем временную шкалу на мобильных
             if (window.innerWidth <= 768) {
