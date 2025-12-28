@@ -76,7 +76,6 @@
             font-weight: 500;
         }
         
-        /* Google Calendar формат */
         .calendar-view {
             display: block;
             background: white;
@@ -455,7 +454,7 @@
         <div class="legend">
             <div class="legend-item">
                 <div class="legend-color" style="background: var(--age-blue);"></div>
-                <span>Возраст 7-9 лет</span>
+                <span>Возраст 7+ лет</span>
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background: var(--age-green);"></div>
@@ -483,7 +482,7 @@
     </div>
     
     <script>
-        // ВСЕ мероприятия из Excel файла
+        // ВСЕ мероприятия из Excel файла с ПРАВИЛЬНЫМ временем
         const activities = [
             {
                 id: 1,
@@ -493,7 +492,7 @@
                 ageClass: "age-blue",
                 price: "600 ₽",
                 duration: 45,
-                times: ["11:30-12:15"]
+                times: ["11:30-12:15"] // В Excel: 11:30:00
             },
             {
                 id: 2,
@@ -503,7 +502,7 @@
                 ageClass: "age-blue",
                 price: "600 ₽",
                 duration: 45,
-                times: ["14:45-15:30", "16:15-17:00"]
+                times: ["14:45-15:30", "16:15-17:00"] // В Excel: 14:45:00 и 16:15:00
             },
             {
                 id: 3,
@@ -513,7 +512,7 @@
                 ageClass: "age-blue",
                 price: "750 ₽",
                 duration: 45,
-                times: ["13:30-14:15"]
+                times: ["13:30-14:15"] // В Excel: 13:30:00
             },
             {
                 id: 4,
@@ -523,7 +522,7 @@
                 ageClass: "age-green",
                 price: "750 ₽",
                 duration: 45,
-                times: ["13:00-13:45"]
+                times: ["13:00-13:45"] // В Excel: 13:00:00
             },
             {
                 id: 5,
@@ -533,7 +532,7 @@
                 ageClass: "age-green",
                 price: "600 ₽",
                 duration: 60,
-                times: ["15:45-16:45"]
+                times: ["15:45-16:45"] // В Excel: 15:45:00
             },
             {
                 id: 6,
@@ -543,7 +542,7 @@
                 ageClass: "age-green",
                 price: "600 ₽",
                 duration: 45,
-                times: ["17:45-18:30"]
+                times: ["17:45-18:30"] // В Excel: 17:45:00
             },
             {
                 id: 7,
@@ -553,7 +552,7 @@
                 ageClass: "age-pink",
                 price: "900 ₽",
                 duration: 60,
-                times: ["17:30-18:30"]
+                times: ["17:30-18:30"] // В Excel: 17:30:00
             },
             {
                 id: 8,
@@ -563,7 +562,7 @@
                 ageClass: "age-pink",
                 price: "800 ₽",
                 duration: 45,
-                times: ["16:00-16:45"]
+                times: ["16:00-16:45"] // В Excel: 16:00:00
             },
             {
                 id: 9,
@@ -573,7 +572,7 @@
                 ageClass: "age-pink",
                 price: "750 ₽",
                 duration: 45,
-                times: ["12:00-12:45"]
+                times: ["12:00-12:45"] // В Excel: 12:00:00
             },
             {
                 id: 10,
@@ -583,7 +582,7 @@
                 ageClass: "age-pink",
                 price: "900 ₽",
                 duration: 60,
-                times: ["17:45-18:45"]
+                times: ["17:45-18:45"] // В Excel: 17:45:00
             },
             {
                 id: 11,
@@ -603,18 +602,22 @@
                 ageClass: "age-purple",
                 price: "3500 ₽",
                 duration: 90,
-                times: ["13:00-14:30", "15:00-16:30"]
+                times: ["13:00-14:30", "15:00-16:30"] // В Excel: 13:00:00 и 15:00:00
             }
         ];
 
         function timeToMinutes(timeStr) {
             if (timeStr.includes('Весь день')) {
-                return { start: 600, end: 1200 };
+                return { start: 600, end: 1200 }; // 10:00-20:00 = 600-1200 минут
             }
             
+            // Убираем секунды, если они есть
             const [time, endTime] = timeStr.split('-');
-            const [hours, minutes] = time.split(':').map(Number);
-            const [endHours, endMinutes] = endTime.split(':').map(Number);
+            const startTimeClean = time.split(':')[0] + ':' + time.split(':')[1]; // Берем только часы и минуты
+            const endTimeClean = endTime.split(':')[0] + ':' + endTime.split(':')[1];
+            
+            const [hours, minutes] = startTimeClean.split(':').map(Number);
+            const [endHours, endMinutes] = endTimeClean.split(':').map(Number);
             
             return {
                 start: hours * 60 + minutes,
@@ -701,17 +704,10 @@
             });
             
             // Создаем обычные события с умным распределением
-            const eventsByHour = {};
+            const eventsByTime = [];
             
-            // Группируем события по часам
-            regularEvents.forEach(event => {
-                const hour = Math.floor(event.timeRange.start / 60);
-                if (!eventsByHour[hour]) eventsByHour[hour] = [];
-                eventsByHour[hour].push(event);
-            });
-            
-            // Обрабатываем каждую группу событий
-            regularEvents.forEach(event => {
+            // Проходим по каждому событию и находим его позицию
+            regularEvents.forEach((event, index) => {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `calendar-event ${event.activity.ageClass}`;
                 
@@ -721,32 +717,39 @@
                 eventDiv.style.top = `${startPosition}px`;
                 eventDiv.style.height = `${height}px`;
                 
-                // Находим пересекающиеся события в этом временном промежутке
-                const overlappingEvents = regularEvents.filter(e => 
-                    e !== event && 
+                // Находим все события, которые пересекаются по времени с текущим
+                const overlappingEvents = regularEvents.filter((e, i) => 
+                    i !== index && 
                     ((e.timeRange.start < event.timeRange.end && e.timeRange.end > event.timeRange.start) ||
                      (e.timeRange.start >= event.timeRange.start && e.timeRange.start < event.timeRange.end))
                 );
                 
-                // Распределяем ширину в зависимости от количества пересечений
+                // Определяем ширину и позицию
                 if (overlappingEvents.length === 0) {
+                    // Нет пересечений - широкая карточка
                     eventDiv.style.width = '80%';
                     eventDiv.style.left = '85px';
+                    eventDiv.style.zIndex = '2';
                 } else {
-                    // При пересечении - располагаем рядом
-                    const totalOverlaps = overlappingEvents.length + 1;
-                    const widthPercent = 75 / totalOverlaps;
+                    // Есть пересечения - распределяем по горизонтали
+                    const totalEventsInSlot = overlappingEvents.length + 1;
+                    const slotWidth = 75; // процент от доступной ширины
+                    const eventWidth = slotWidth / totalEventsInSlot;
                     
-                    // Находим индекс этого события среди пересекающихся
-                    const allEventsInSlot = [event, ...overlappingEvents]
+                    // Находим индекс текущего события среди всех в этом слоте
+                    const allInSlot = [event, ...overlappingEvents]
                         .sort((a, b) => a.timeRange.start - b.timeRange.start);
                     
-                    const index = allEventsInSlot.findIndex(e => e === event);
-                    const leftOffset = 85 + (index * widthPercent);
+                    const eventIndex = allInSlot.findIndex(e => 
+                        e.activity.id === event.activity.id && 
+                        e.timeSlot === event.timeSlot
+                    );
                     
-                    eventDiv.style.width = `${widthPercent}%`;
+                    const leftOffset = 85 + (eventIndex * eventWidth);
+                    
+                    eventDiv.style.width = `${eventWidth}%`;
                     eventDiv.style.left = `${leftOffset}%`;
-                    eventDiv.style.zIndex = `${2 + index}`;
+                    eventDiv.style.zIndex = `${10 + eventIndex}`;
                 }
                 
                 eventDiv.innerHTML = `
