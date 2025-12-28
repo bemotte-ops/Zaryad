@@ -185,7 +185,7 @@
             position: relative;
         }
         
-        /* Фоновая сетка с часами */
+        /* Фоновая сетка с часами от 10:00 до 18:00 */
         .timeline-grid::before {
             content: '';
             position: absolute;
@@ -205,27 +205,27 @@
             z-index: 1;
         }
         
-        /* Подписи часов - ДОБАВИМ 11:00 */
+        /* Подписи часов сверху от 10:00 до 18:00 */
         .hour-marker {
             position: absolute;
-            top: 100%;
+            top: -25px;
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--primary);
-            padding-top: 5px;
             transform: translateX(-50%);
             z-index: 2;
             white-space: nowrap;
         }
         
-        .hour-11 { left: 0%; }
-        .hour-12 { left: 12.5%; }
-        .hour-13 { left: 25%; }
-        .hour-14 { left: 37.5%; }
-        .hour-15 { left: 50%; }
-        .hour-16 { left: 62.5%; }
-        .hour-17 { left: 75%; }
-        .hour-18 { left: 87.5%; }
+        .hour-10 { left: 0%; }
+        .hour-11 { left: 12.5%; }
+        .hour-12 { left: 25%; }
+        .hour-13 { left: 37.5%; }
+        .hour-14 { left: 50%; }
+        .hour-15 { left: 62.5%; }
+        .hour-16 { left: 75%; }
+        .hour-17 { left: 87.5%; }
+        .hour-18 { left: 100%; }
         
         .time-marker {
             flex: 1;
@@ -259,23 +259,16 @@
             z-index: 10;
         }
         
-        /* Голубые слоты (7-9 лет) - 75% ширины, отступ сверху 5px */
+        /* Цвета для десктопной версии */
         .age-blue-slot { 
             background: linear-gradient(135deg, var(--age-blue), #0d47a1);
-            width: 75% !important;
-            left: 12.5% !important; /* Центрируем: (100% - 75%) / 2 = 12.5% */
-            top: 5px;
         }
         
-        /* Розовые слоты (10+ лет) - 50% ширины, отступ сверху 15px */
         .age-pink-slot { 
             background: linear-gradient(135deg, var(--age-pink), #880e4f);
-            width: 50% !important;
-            left: 25% !important; /* Центрируем: (100% - 50%) / 2 = 25% */
-            top: 15px;
         }
         
-        /* Событие на весь день - убираем на задний план */
+        /* Событие на весь день - зеленый цвет */
         .full-day-slot {
             position: absolute;
             left: 0;
@@ -292,20 +285,17 @@
             overflow: hidden;
             transition: var(--transition);
             cursor: pointer;
-            z-index: 1; /* Уменьшили z-index */
+            z-index: 1;
             border: 2px solid rgba(255,255,255,0.3);
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, rgba(26, 93, 56, 0.7), rgba(46, 125, 50, 0.7)); /* Полупрозрачный */
-            box-shadow: none; /* Убираем тень, чтобы не перекрывало */
-            width: 90% !important;
-            left: 5% !important; /* Центрируем: (100% - 90%) / 2 = 5% */
-            top: 25px;
+            background: linear-gradient(135deg, var(--primary), #2e7d32);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
         }
         
         .full-day-slot:hover {
-            transform: translateY(-1px);
-            background: linear-gradient(135deg, rgba(26, 93, 56, 0.8), rgba(46, 125, 50, 0.8));
-            z-index: 2; /* При наведении поднимаем */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+            z-index: 2;
         }
         
         .slot-content {
@@ -388,11 +378,11 @@
         
         .mobile-calendar-timeline {
             position: relative;
-            min-height: 600px;
+            min-height: 660px; /* 11 часов * 60px */
             background: #fafafa;
         }
         
-        /* Часовые линии */
+        /* Часовые линии от 10:00 до 21:00 */
         .mobile-hour {
             position: relative;
             height: 60px;
@@ -444,31 +434,32 @@
             z-index: 10;
         }
         
-        /* Разная ширина для пересекающихся событий */
+        /* Цвета для мобильной версии */
+        .mobile-calendar-event.age-blue {
+            background: linear-gradient(135deg, var(--age-blue), #0d47a1);
+            border-left-color: #0d47a1;
+        }
+        
+        .mobile-calendar-event.age-pink {
+            background: linear-gradient(135deg, var(--age-pink), #880e4f);
+            border-left-color: #880e4f;
+        }
+        
         .mobile-calendar-event.full-day {
-            width: 90% !important;
-            left: 5% !important;
-            background: linear-gradient(135deg, rgba(26, 93, 56, 0.85), rgba(46, 125, 50, 0.85));
+            background: linear-gradient(135deg, var(--primary), #2e7d32);
             border-left-color: var(--primary);
             border: 1px dashed rgba(255,255,255,0.5);
             z-index: 1;
         }
         
-        .mobile-calendar-event.age-blue {
-            width: 75% !important;
-            left: 12.5% !important;
-            background: linear-gradient(135deg, var(--age-blue), #0d47a1);
-            border-left-color: #0d47a1;
-            z-index: 2;
+        /* Ширина по умолчанию - для не пересекающихся событий */
+        .mobile-calendar-event {
+            width: 80% !important;
+            right: 10% !important;
+            left: auto !important;
         }
         
-        .mobile-calendar-event.age-pink {
-            width: 50% !important;
-            left: 25% !important;
-            background: linear-gradient(135deg, var(--age-pink), #880e4f);
-            border-left-color: #880e4f;
-            z-index: 3;
-        }
+        /* Ширина для пересекающихся событий будет установлена через JS */
         
         .mobile-event-header {
             display: flex;
@@ -747,11 +738,6 @@
                 padding: 15px;
                 font-size: 0.8rem;
             }
-            
-            /* Убираем переключатель видов */
-            .mobile-view-toggle {
-                display: none;
-            }
         }
         
         @media (max-width: 576px) {
@@ -808,7 +794,8 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
-                            <!-- Подписи часов - исправлено, добавили 11:00 -->
+                            <!-- Подписи часов сверху от 10:00 до 18:00 -->
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -818,9 +805,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- Занятие 11:30-12:15 (45 мин) - начинается в 11:30 -->
+                            <!-- Занятие 11:30-12:15 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 6.25%; width: 9.375%; top: 5px;" 
+                                 style="left: 18.75%; width: 5.625%; top: 5px;" 
                                  onclick="highlightActivity(1)">
                                 <div class="slot-content">
                                     <div class="slot-time">11:30-12:15</div>
@@ -856,6 +843,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -865,9 +853,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 14:45-15:30 - исправленное позиционирование -->
+                            <!-- 14:45-15:30 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 46.875%; width: 9.375%; top: 5px;"
+                                 style="left: 59.375%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(2)">
                                 <div class="slot-content">
                                     <div class="slot-time">14:45-15:30</div>
@@ -878,9 +866,9 @@
                                 </div>
                             </div>
                             
-                            <!-- 16:15-17:00 - исправленное позиционирование -->
+                            <!-- 16:15-17:00 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 64.0625%; width: 9.375%; top: 5px;"
+                                 style="left: 76.5625%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(2)">
                                 <div class="slot-content">
                                     <div class="slot-time">16:15-17:00</div>
@@ -916,6 +904,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -925,9 +914,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 12:15-13:00 - исправленное позиционирование -->
+                            <!-- 12:15-13:00 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 17.1875%; width: 9.375%; top: 5px;"
+                                 style="left: 26.5625%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(3)">
                                 <div class="slot-content">
                                     <div class="slot-time">12:15-13:00</div>
@@ -938,9 +927,9 @@
                                 </div>
                             </div>
                             
-                            <!-- 13:45-14:30 - исправленное позиционирование -->
+                            <!-- 13:45-14:30 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 39.0625%; width: 9.375%; top: 5px;"
+                                 style="left: 48.4375%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(3)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:45-14:30</div>
@@ -976,6 +965,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -985,9 +975,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 13:30-14:15 - исправленное позиционирование -->
+                            <!-- 13:30-14:15 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 29.6875%; width: 9.375%; top: 5px;"
+                                 style="left: 43.75%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(4)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:30-14:15</div>
@@ -1023,6 +1013,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1032,9 +1023,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 13:00-13:45 - исправленное позиционирование -->
+                            <!-- 13:00-13:45 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 25%; width: 9.375%; top: 5px;"
+                                 style="left: 37.5%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(5)">
                                 <div class="slot-content">
                                     <div class="slot-time">13:00-13:45</div>
@@ -1070,6 +1061,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1079,9 +1071,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 15:45-16:45 (60 мин) - исправленное позиционирование -->
+                            <!-- 15:45-16:45 (60 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 57.8125%; width: 12.5%; top: 5px;"
+                                 style="left: 71.875%; width: 7.5%; top: 5px;"
                                  onclick="highlightActivity(6)">
                                 <div class="slot-content">
                                     <div class="slot-time">15:45-16:45</div>
@@ -1117,6 +1109,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1126,9 +1119,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:45-18:30 - исправленное позиционирование -->
+                            <!-- 17:45-18:30 (45 мин) - точно по времени -->
                             <div class="activity-slot age-blue-slot" 
-                                 style="left: 82.8125%; width: 9.375%; top: 5px;"
+                                 style="left: 96.875%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(7)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:45-18:30</div>
@@ -1164,6 +1157,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1173,9 +1167,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:30-18:30 (60 мин) - исправленное позиционирование -->
+                            <!-- 17:30-18:30 (60 мин) - точно по времени -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 79.6875%; width: 12.5%; top: 5px;"
+                                 style="left: 93.75%; width: 7.5%; top: 5px;"
                                  onclick="highlightActivity(8)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:30-18:30</div>
@@ -1211,6 +1205,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1220,9 +1215,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 16:00-16:45 - исправленное позиционирование -->
+                            <!-- 16:00-16:45 (45 мин) - точно по времени -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 62.5%; width: 9.375%; top: 5px;"
+                                 style="left: 75%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(9)">
                                 <div class="slot-content">
                                     <div class="slot-time">16:00-16:45</div>
@@ -1258,6 +1253,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1267,9 +1263,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 12:00-12:45 - исправленное позиционирование -->
+                            <!-- 12:00-12:45 (45 мин) - точно по времени -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 12.5%; width: 9.375%; top: 5px;"
+                                 style="left: 25%; width: 5.625%; top: 5px;"
                                  onclick="highlightActivity(10)">
                                 <div class="slot-content">
                                     <div class="slot-time">12:00-12:45</div>
@@ -1305,6 +1301,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1314,9 +1311,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- 17:45-18:45 (60 мин) - исправленное позиционирование -->
+                            <!-- 17:45-18:45 (60 мин) - точно по времени -->
                             <div class="activity-slot age-pink-slot" 
-                                 style="left: 82.8125%; width: 12.5%; top: 5px;"
+                                 style="left: 96.875%; width: 7.5%; top: 5px;"
                                  onclick="highlightActivity(11)">
                                 <div class="slot-content">
                                     <div class="slot-time">17:45-18:45</div>
@@ -1352,6 +1349,7 @@
                             <div class="time-marker"></div>
                             <div class="time-marker"></div>
                             
+                            <div class="hour-marker hour-10">10:00</div>
                             <div class="hour-marker hour-11">11:00</div>
                             <div class="hour-marker hour-12">12:00</div>
                             <div class="hour-marker hour-13">13:00</div>
@@ -1361,8 +1359,9 @@
                             <div class="hour-marker hour-17">17:00</div>
                             <div class="hour-marker hour-18">18:00</div>
                             
-                            <!-- Весь день -->
-                            <div class="full-day-slot" onclick="highlightActivity(12)">
+                            <!-- Весь день - от 10:00 до 21:00 -->
+                            <div class="full-day-slot" onclick="highlightActivity(12)"
+                                 style="left: 0%; width: 100%; top: 5px;">
                                 <div class="slot-content">
                                     <div class="slot-time">Весь день (10:00-21:00)</div>
                                     <div class="slot-details">
@@ -1428,7 +1427,7 @@
     </div>
     
     <script>
-        // Данные о мероприятиях
+        // Данные о мероприятиях с временными диапазонами в минутах
         const activities = [
             {
                 id: 1,
@@ -1600,6 +1599,27 @@
             }
         }
 
+        // Функция для преобразования времени в минуты
+        function timeToMinutes(timeStr) {
+            if (timeStr.includes('Весь день')) {
+                return { start: 600, end: 1260 }; // 10:00-21:00
+            }
+            
+            const [time, endTime] = timeStr.split('-');
+            const [hours, minutes] = time.split(':').map(Number);
+            const [endHours, endMinutes] = endTime.split(':').map(Number);
+            
+            return {
+                start: hours * 60 + minutes,
+                end: endHours * 60 + endMinutes
+            };
+        }
+
+        // Функция для проверки пересечения временных интервалов
+        function checkOverlap(time1, time2) {
+            return !(time1.end <= time2.start || time2.end <= time1.start);
+        }
+
         // Создание мобильного календаря в формате Google Calendar
         function createMobileCalendar() {
             const container = document.getElementById('mobile-calendar-timeline');
@@ -1624,41 +1644,88 @@
                 container.appendChild(hourDiv);
             }
             
-            // Добавляем мероприятия
+            // Собираем все события в один массив для анализа пересечений
+            const allEvents = [];
+            
             activities.forEach(activity => {
                 activity.times.forEach(timeSlot => {
-                    let eventDiv = document.createElement('div');
-                    eventDiv.className = `mobile-calendar-event ${activity.ageClass}`;
+                    const timeRange = timeToMinutes(timeSlot);
+                    allEvents.push({
+                        activity: activity,
+                        timeSlot: timeSlot,
+                        timeRange: timeRange,
+                        duration: timeRange.end - timeRange.start
+                    });
+                });
+            });
+            
+            // Сортируем события по времени начала
+            allEvents.sort((a, b) => a.timeRange.start - b.timeRange.start);
+            
+            // Группируем события по пересечениям
+            const overlappingGroups = [];
+            let currentGroup = [];
+            let currentEnd = -1;
+            
+            allEvents.forEach(event => {
+                if (event.timeRange.start >= currentEnd) {
+                    // Начинается новая группа
+                    if (currentGroup.length > 0) {
+                        overlappingGroups.push([...currentGroup]);
+                    }
+                    currentGroup = [event];
+                    currentEnd = event.timeRange.end;
+                } else {
+                    // Добавляем в текущую группу
+                    currentGroup.push(event);
+                    currentEnd = Math.max(currentEnd, event.timeRange.end);
+                }
+            });
+            
+            // Добавляем последнюю группу
+            if (currentGroup.length > 0) {
+                overlappingGroups.push([...currentGroup]);
+            }
+            
+            // Создаем события с учетом пересечений
+            overlappingGroups.forEach(group => {
+                // Сортируем группу по времени начала
+                group.sort((a, b) => a.timeRange.start - b.timeRange.start);
+                
+                // Для каждой группы определяем ширину событий
+                group.forEach((event, index) => {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.className = `mobile-calendar-event ${event.activity.ageClass}`;
                     
-                    // Определяем позицию и размеры
-                    const isFullDay = timeSlot.includes('Весь день');
-                    
-                    if (isFullDay) {
-                        // Событие на весь день
+                    // Добавляем класс full-day для мероприятия на весь день
+                    if (event.timeSlot.includes('Весь день')) {
                         eventDiv.classList.add('full-day');
-                        eventDiv.style.top = '10px';
-                        eventDiv.style.height = '580px'; // Почти на весь день
+                    }
+                    
+                    // Рассчитываем позицию и высоту (60px в час)
+                    const startPosition = (event.timeRange.start - 600) * (60 / 60); // 10:00 = 600 минут
+                    const height = event.duration * (60 / 60);
+                    
+                    eventDiv.style.top = `${startPosition}px`;
+                    eventDiv.style.height = `${height}px`;
+                    
+                    // Определяем ширину в зависимости от количества пересекающихся событий
+                    if (event.timeSlot.includes('Весь день')) {
+                        // Событие на весь день - 90% ширины, на заднем плане
+                        eventDiv.style.width = '90%';
+                        eventDiv.style.right = '5%';
                         eventDiv.style.zIndex = '1';
+                    } else if (group.length === 1) {
+                        // Нет пересечений - 80% ширины
+                        eventDiv.style.width = '80%';
+                        eventDiv.style.right = '10%';
+                        eventDiv.style.zIndex = '2';
                     } else {
-                        // Обычное событие
-                        const [startTime, endTime] = timeSlot.split('-');
-                        const [startHour, startMinute] = startTime.split(':').map(Number);
-                        const [endHour, endMinute] = endTime.split(':').map(Number);
-                        
-                        // Позиционирование относительно 10:00
-                        const startPosition = ((startHour - 10) * 60 + startMinute) * (60 / 60); // 60px в час
-                        const durationMinutes = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
-                        const height = durationMinutes * (60 / 60); // 60px в час
-                        
-                        eventDiv.style.top = `${startPosition}px`;
-                        eventDiv.style.height = `${height}px`;
-                        
-                        // Для пересекающихся событий используем разные z-index
-                        if (activity.ageClass === 'age-pink') {
-                            eventDiv.style.zIndex = '3';
-                        } else {
-                            eventDiv.style.zIndex = '2';
-                        }
+                        // Есть пересечения - разная ширина в зависимости от порядка
+                        const widthPercentage = 80 - (index * 10);
+                        eventDiv.style.width = `${widthPercentage}%`;
+                        eventDiv.style.right = `${10 + (index * 5)}%`;
+                        eventDiv.style.zIndex = `${2 + index}`;
                     }
                     
                     // Добавляем кнопку расширения
@@ -1667,17 +1734,17 @@
                     expandBtn.textContent = '+';
                     expandBtn.onclick = (e) => {
                         e.stopPropagation();
-                        openMobileModal(activity, timeSlot);
+                        openMobileModal(event.activity, event.timeSlot);
                     };
                     
                     eventDiv.innerHTML = `
                         <div class="mobile-event-header">
-                            <div class="mobile-event-name">${activity.name}</div>
+                            <div class="mobile-event-name">${event.activity.name}</div>
                         </div>
-                        <div class="mobile-event-time">${timeSlot}</div>
+                        <div class="mobile-event-time">${event.timeSlot}</div>
                         <div class="mobile-event-details">
-                            <span class="mobile-event-age">${activity.age}</span>
-                            <span class="mobile-event-price">${activity.price}</span>
+                            <span class="mobile-event-age">${event.activity.age}</span>
+                            <span class="mobile-event-price">${event.activity.price}</span>
                         </div>
                     `;
                     
@@ -1686,22 +1753,10 @@
                     headerDiv.appendChild(expandBtn);
                     
                     // Добавляем обработчик клика на все событие
-                    eventDiv.onclick = () => openMobileModal(activity, timeSlot);
+                    eventDiv.onclick = () => openMobileModal(event.activity, event.timeSlot);
                     
-                    // Добавляем в соответствующий час
-                    if (isFullDay) {
-                        // Для события на весь день добавляем в первый час
-                        document.getElementById('hour-content-10').appendChild(eventDiv);
-                    } else {
-                        const [startHour] = timeSlot.split('-')[0].split(':');
-                        const hourContent = document.getElementById(`hour-content-${parseInt(startHour)}`);
-                        if (hourContent) {
-                            hourContent.appendChild(eventDiv);
-                        } else {
-                            // Если час не найден, добавляем в контейнер 10:00
-                            document.getElementById('hour-content-10').appendChild(eventDiv);
-                        }
-                    }
+                    // Добавляем в контейнер календаря
+                    container.appendChild(eventDiv);
                 });
             });
         }
@@ -1749,33 +1804,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Создаем мобильный календарь
             createMobileCalendar();
-            
-            // Обновляем позиции слотов для лучшего отображения в десктопной версии
-            document.querySelectorAll('.activity-slot, .full-day-slot').forEach(slot => {
-                // Получаем текущие значения left и width
-                const currentLeft = parseFloat(slot.style.left);
-                const currentWidth = parseFloat(slot.style.width);
-                
-                if (slot.classList.contains('age-blue-slot')) {
-                    // Голубые слоты - 75% ширины, центрируем
-                    slot.style.width = '75%';
-                    const newLeft = currentLeft - (currentWidth * 0.25) / 2;
-                    slot.style.left = `${newLeft}%`;
-                    slot.style.top = '5px';
-                } else if (slot.classList.contains('age-pink-slot')) {
-                    // Розовые слоты - 50% ширины, центрируем
-                    slot.style.width = '50%';
-                    const newLeft = currentLeft - (currentWidth * 0.50) / 2;
-                    slot.style.left = `${newLeft}%`;
-                    slot.style.top = '15px';
-                } else if (slot.classList.contains('full-day-slot')) {
-                    // События на весь день - 90% ширины
-                    slot.style.width = '90%';
-                    slot.style.left = '5%';
-                    slot.style.top = '25px';
-                    slot.style.zIndex = '1';
-                }
-            });
             
             // Обновляем вид при изменении размера окна
             window.addEventListener('resize', function() {
